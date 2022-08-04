@@ -17,3 +17,8 @@ a {
 img {
   height: 100px;
 }
+
+.menu,
+.cart {
+  width: 120px;
+}

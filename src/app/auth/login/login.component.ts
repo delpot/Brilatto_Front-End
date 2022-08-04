@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginForm } from '../types/login-form.interface';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  form: LoginForm = {
+    email: '',
+    password: '',
+  };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  submit() {
+    return this.form;
   }
-
 }
