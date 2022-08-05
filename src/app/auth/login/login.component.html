@@ -48,7 +48,8 @@
         type="submit"
         class="p-2 w-full bg-blue-700 text-white hover:bg-blue-900 rounded"
       >
-        Me connecter
+        <ng-container *ngIf="isLoading"> Chargement... </ng-container>
+        <ng-container *ngIf="!isLoading"> Me connecter </ng-container>
       </button>
     </div>
   </form>

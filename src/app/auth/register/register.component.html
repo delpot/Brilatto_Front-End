@@ -57,6 +57,9 @@
     >
       Veuillez remplir tous les champs.
     </div>
+    <div *ngIf="!passwordsMatched" class="p-2 bg-red-300 text-red-800 rounded">
+      Les mots de passe ne correspondent pas.
+    </div>
 
     <div class="my-5 w-full">
       <button
@@ -64,7 +67,8 @@
         [disabled]="myForm.form.invalid"
         class="p-2 w-full bg-blue-700 text-white hover:bg-blue-900 rounded"
       >
-        M'inscrire
+        <ng-container *ngIf="isLoading"> Chargement... </ng-container>
+        <ng-container *ngIf="!isLoading"> M'inscrire </ng-container>
       </button>
     </div>
   </form>
