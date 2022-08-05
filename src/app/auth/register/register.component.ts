@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RegisterForm } from '../types/register-form.interface';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,17 @@ export class RegisterComponent {
   constructor() {}
 
   submit() {
-    console.log(this.form);
-    return this.form;
+    if (this.form.password !== this.form.passwordToConfirm) {
+      return;
+    }
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, this.form.email, this.form.password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   }
 }
