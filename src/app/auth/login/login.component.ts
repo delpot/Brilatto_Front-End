@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginForm } from '../types/login-form.interface';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { AuthService } from '../auth.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +16,35 @@ export class LoginComponent {
   };
 
   isLoading: boolean = false;
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
-  submit() {
+  onSubmit(): void {
     if (this.isLoading) return;
     this.isLoading = true;
+
+    const { email, password } = this.form;
+
+    this.authService.login(email, password).subscribe(
+      (res: HttpResponse<any>) => {
+        console.log(res);
+      }
+    //   {
+    //   next: (data) => {
+    //     console.log(data);
+    //     this.isLoginFailed = false;
+    //     this.isLoggedIn = true;
+    //   },
+    //   error: (err) => {
+    //     this.errorMessage = err.error.message;
+    //     this.isLoginFailed = true;
+    //   },
+    // }
+    );
+
     const auth = getAuth();
     signInWithEmailAndPassword(auth, this.form.email, this.form.password)
       .then((userCredential) => {
@@ -32,6 +57,5 @@ export class LoginComponent {
         alert('Ces identifiants sont incorrects.');
       })
       .finally(() => (this.isLoading = false));
-    return this.form;
   }
 }

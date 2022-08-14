@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,7 +10,13 @@ import { JewelCategoryModule } from './jewel-category/jewel-category.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
-  imports: [BrowserModule, AppRoutingModule, JewelCategoryModule, AuthModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    JewelCategoryModule,
+    AuthModule,
+    HttpClientModule,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
