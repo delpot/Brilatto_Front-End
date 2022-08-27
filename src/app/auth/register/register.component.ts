@@ -16,6 +16,18 @@ export class RegisterComponent {
     email: '',
     password: '',
     passwordToConfirm: '',
+    dateOfBirth: {
+      dayOfBirth: '',
+      monthOfBirth: '',
+      yearOfBirth: '',
+    },
+    address: {
+      addressLine1: '',
+      city: '',
+      postalCode: '',
+      country: '',
+      addressLine2: '',
+    },
   };
 
   passwordsMatched: boolean = true;
@@ -34,11 +46,11 @@ export class RegisterComponent {
     }
     this.isLoading = true;
 
-    const { firstname, lastname, email, password, passwordToConfirm } =
+    const { firstname, lastname, email, password, passwordToConfirm, dateOfBirth, address } =
       this.form;
 
     this.authService
-      .register(firstname, lastname, email, password, passwordToConfirm)
+      .register(firstname, lastname, email, password, passwordToConfirm, dateOfBirth, address)
       .subscribe((res: HttpResponse<any>) => {
         console.log(res);
       });

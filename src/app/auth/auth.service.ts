@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Address, DateOfBirth } from './types/register-form.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -39,19 +40,23 @@ export class AuthService {
     firstname: string,
     lastname: string,
     email: string,
+    password: string,
     passwordToConfirm: string,
-    confirmedPassword: string
+    dateOfBirth: DateOfBirth,
+    address: Address
   ) {
     console.log(
       firstname,
       lastname,
       email,
+      password,
       passwordToConfirm,
-      confirmedPassword
+      dateOfBirth,
+      address
     );
     return this.http.post<any>(
       environment.baseUrl + this.SIGNUP_URL,
-      { firstname, lastname, email, passwordToConfirm, confirmedPassword },
+      { firstname, lastname, email, password, passwordToConfirm, dateOfBirth, address },
       this.httpOptions
     );
   }
