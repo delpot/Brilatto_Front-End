@@ -2,16 +2,9 @@ export interface RegisterForm {
   firstname: string;
   lastname: string;
   email: string;
-  password: string;
-  passwordToConfirm: string;
-  dateOfBirth: DateOfBirth;
+  password: string,
+  dateOfBirth: Date;
   address: Address
-}
-
-export interface DateOfBirth {
-  dayOfBirth: string;
-  monthOfBirth: string;
-  yearOfBirth: string;
 }
 
 export interface Address {

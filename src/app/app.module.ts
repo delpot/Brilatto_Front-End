@@ -15,7 +15,7 @@ import { JewelCategoryModule } from './jewel-category/jewel-category.module';
     AppRoutingModule,
     JewelCategoryModule,
     AuthModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent],
 })

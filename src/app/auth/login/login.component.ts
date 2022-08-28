@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginForm } from '../types/login-form.interface';
+import { LoginForm } from '../models/login-form.interface';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { AuthService } from '../auth.service';
 import { HttpResponse } from '@angular/common/http';
