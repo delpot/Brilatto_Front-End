@@ -39,9 +39,6 @@ export class AuthService {
   register(
     registerForm: RegisterForm
   ) {
-    console.log(
-      registerForm
-    );
     return this.http.post<any>(
       environment.baseUrl + this.SIGNUP_URL,
       registerForm,

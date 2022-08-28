@@ -199,16 +199,16 @@ export class RegisterComponent {
     this.registerDto.address.country = this.registerForm.controls['country'].value;
 
     this.authService
-      .register(this.registerDto)
-      .subscribe((res: HttpResponse<any>) => {
-        console.log(res);
-      });
+    .register(this.registerDto)
+    .subscribe((res: HttpResponse<any>) => {
+      console.log(res);
+    });
 
     const auth = getAuth();
 
     createUserWithEmailAndPassword(auth, this.registerDto.email, this.registerDto.password)
       .then((userCredential) => {
-        console.log(userCredential);
+        console.log(`User in Firebase: ${userCredential.user.email}`);
         alert('Vous êtes inscrit!');
       })
       .catch((error) => {
