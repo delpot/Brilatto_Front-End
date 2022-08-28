@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Address, RegisterForm } from './models/register-form.interface';
+import { LoginForm } from './models/login-form.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -24,21 +25,15 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, pwd: string) {
-    console.log(
-      email,
-      pwd
-    );
+  login(loginForm: LoginForm) {
     return this.http.post<any>(
       environment.baseUrl + this.LOGIN_URL,
-      { email, pwd },
+      loginForm,
       this.httpOptions
     );
   }
 
-  register(
-    registerForm: RegisterForm
-  ) {
+  register(registerForm: RegisterForm) {
     return this.http.post<any>(
       environment.baseUrl + this.SIGNUP_URL,
       registerForm,

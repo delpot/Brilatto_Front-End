@@ -26,36 +26,22 @@ export class LoginComponent {
     if (this.isLoading) return;
     this.isLoading = true;
 
-    const { email, password } = this.form;
-
-    this.authService.login(email, password).subscribe(
-      (res: HttpResponse<any>) => {
+    this.authService
+    .login(this.form)
+    .subscribe((res: HttpResponse<any>) => {
         console.log(res);
-      }
-    //   {
-    //   next: (data) => {
-    //     console.log(data);
-    //     this.isLoginFailed = false;
-    //     this.isLoggedIn = true;
-    //   },
-    //   error: (err) => {
-    //     this.errorMessage = err.error.message;
-    //     this.isLoginFailed = true;
-    //   },
-    // }
-    );
+      });
 
     const auth = getAuth();
+    
     signInWithEmailAndPassword(auth, this.form.email, this.form.password)
       .then((userCredential) => {
-        console.log(userCredential);
-        alert('Vous êtes connecté!');
+        console.log(`User logged in Firebase: ${userCredential.user.email}`);
+        alert('Vous êtes connecté(e)!');
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert('Ces identifiants sont incorrects.');
+        console.log(`Error code: ${error.code}. Error message: ${error.message}.`)
       })
-      .finally(() => (this.isLoading = false));
+      .finally(() => this.isLoading = false);
   }
 }
