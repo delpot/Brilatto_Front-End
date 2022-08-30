@@ -203,17 +203,23 @@ export class RegisterComponent {
     createUserWithEmailAndPassword(auth, this.registerDto.email, this.registerDto.password)
       .then((userCredential) => {
         console.log(`User registered in Firebase: ${userCredential.user.email}`);
-        this.authService
-        .register(this.registerDto)
-        .subscribe((res: HttpResponse<any>) => {
-          console.log(res);
-        });
-        alert('Vous êtes inscrit(e)!');
-        this.router.navigate(['/login'])
       })
       .catch((error) => {
         console.log(`Error code: ${error.code}. Error message: ${error.message}.`)
       })
       .finally(() => this.isLoading = false);
+
+    this.authService
+    .register(this.registerDto)
+    .subscribe({
+      next: (res: HttpResponse<any>) => {
+        console.log(res);
+        alert('Vous êtes inscrit(e)!');
+        this.router.navigate(['/login'])
+      },
+      error: (err) => {
+        console.log(`${err.statusText}: ${err.error}`);
+      }
+    });
   }
 }

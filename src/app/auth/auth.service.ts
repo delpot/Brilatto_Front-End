@@ -26,11 +26,11 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(loginForm: LoginForm): Observable<any> {
-    return this.http.post<any>(
-      environment.baseUrl + this.LOGIN_URL,
-      loginForm,
-      this.httpOptions
-    );
+      return this.http.post<any>(
+        environment.baseUrl + this.LOGIN_URL,
+        loginForm,
+        this.httpOptions
+      );
   }
 
   register(registerForm: RegisterForm): Observable<any> {

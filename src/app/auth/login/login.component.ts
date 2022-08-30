@@ -49,13 +49,6 @@ export class LoginComponent {
     signInWithEmailAndPassword(auth, this.loginDto.email, this.loginDto.password)
       .then((userCredential) => {
         console.log(`User logged in Firebase: ${userCredential.user.email}`);
-        this.authService
-        .login(this.loginDto)
-        .subscribe((res: HttpResponse<any>) => {
-          console.log(res)
-          });
-        alert('Vous êtes connecté(e)!');
-        this.router.navigate(['/categories']);
       })
       .catch((error) => {
         switch (error.code) {
@@ -75,5 +68,18 @@ export class LoginComponent {
         console.log(`Error code: ${error.code}. Error message: ${error.message}.`)
       })
       .finally(() => this.isLoading = false);
+
+      
+  this.authService
+  .login(this.loginDto)
+  .subscribe({
+    next: (res: HttpResponse<any>) => {
+      console.log(res);
+      alert('Vous êtes connecté(e)!');
+      this.router.navigate(['/categories']);
+    },
+    error: (err) => {
+      console.log(`${err.statusText}: ${err.error}`);
+    }});
   }
 }
