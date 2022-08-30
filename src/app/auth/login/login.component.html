@@ -7,11 +7,11 @@
     <h1 class="uppercase text-center text-xl font-medium">Se connecter à son compte</h1>
     <div class="my-5 w-full">
       <label 
-        for="email"
-        class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2" 
-        >
-        E-mail
-    </label>
+          for="email"
+          class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2" 
+          >
+          E-mail
+      </label>
       <input
         type="email"
         id="email"
@@ -20,6 +20,12 @@
         formControlName="email"
         required
       />
+      <label 
+        *ngIf="missingEmail"
+        class="text-red-700 text-xs font-medium mb-2" 
+        >
+        Merci de remplir ce champs.
+      </label>
     </div>
 
     <div class="my-5 w-full">
@@ -28,7 +34,7 @@
         class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2" 
         >
         Mot de passe
-    </label>
+      </label>
       <input
         type="password"
         id="password"
@@ -37,7 +43,27 @@
         formControlName="password"
         required
       />
+      <label 
+        *ngIf="missingPassword"
+        class="text-red-700 text-xs font-medium mb-2" 
+        >
+        Merci de remplir ce champs.
+      </label>
     </div>
+
+    <label 
+      *ngIf="wrongPassword"
+      class="text-red-700 text-xs font-medium mb-2" 
+      >
+      Mot de passe incorrect.
+    </label>
+
+    <label 
+      *ngIf="userNotFound"
+      class="text-red-700 text-xs font-medium mb-2" 
+      >
+      Identifiant inconnu.
+    </label>
 
     <!-- <div
       *ngIf="
