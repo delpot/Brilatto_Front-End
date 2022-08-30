@@ -73,8 +73,9 @@ export class LoginComponent {
   this.authService
   .login(this.loginDto)
   .subscribe({
-    next: (res: HttpResponse<any>) => {
+    next: (res) => {
       console.log(res);
+      this.authService.saveToken(res.token);
       alert('Vous êtes connecté(e)!');
       this.router.navigate(['/categories']);
     },

@@ -40,4 +40,8 @@ export class AuthService {
       this.httpOptions
     );
   }
+
+  saveToken(token: string): void{
+    localStorage.setItem('token', token);
+  }
 }
