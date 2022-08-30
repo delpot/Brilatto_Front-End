@@ -25,7 +25,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(loginForm: LoginForm) {
+  login(loginForm: LoginForm): Observable<any> {
     return this.http.post<any>(
       environment.baseUrl + this.LOGIN_URL,
       loginForm,
@@ -33,7 +33,7 @@ export class AuthService {
     );
   }
 
-  register(registerForm: RegisterForm) {
+  register(registerForm: RegisterForm): Observable<any> {
     return this.http.post<any>(
       environment.baseUrl + this.SIGNUP_URL,
       registerForm,
