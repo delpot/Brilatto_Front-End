@@ -1,7 +1,7 @@
 <div class="flex justify-center">
   <form
+  [formGroup]="loginForm"
     (ngSubmit)="onSubmit()"
-    #myForm="ngForm"
     class="p-4 mt-20 rounded-lg border"
   >
     <h1 class="uppercase text-center text-xl font-medium">Se connecter à son compte</h1>
@@ -17,9 +17,7 @@
         id="email"
         class="p-2 rounded w-full border text-sm"
         placeholder="Email"
-        [(ngModel)]="form.email"
-        name="email"
-        #email="ngModel"
+        formControlName="email"
         required
       />
     </div>
@@ -36,14 +34,12 @@
         id="password"
         class="p-2 rounded w-full border text-sm"
         placeholder="Mot de passe"
-        [(ngModel)]="form.password"
-        name="password"
-        #password="ngModel"
+        formControlName="password"
         required
       />
     </div>
 
-    <div
+    <!-- <div
       *ngIf="
         (email.invalid && (email.dirty || email.touched)) ||
         (password.invalid && (password.dirty || password.touched))
@@ -51,7 +47,7 @@
       class="p-2 bg-red-300 text-red-800 rounded"
     >
       Veuillez remplir tous les champs.
-    </div>
+    </div> -->
 
     <div class="my-5 w-full">
       <button
