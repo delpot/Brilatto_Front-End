@@ -31,7 +31,7 @@ export class RegisterComponent {
       lastname: '',
       email: '',
       password: '',
-      dateOfBirth: '',
+      dateOfBirth: new Date(),
       address: {
         addressLine1: '',
         city: '',
@@ -191,8 +191,8 @@ export class RegisterComponent {
     this.registerDto.lastname = this.registerForm.controls['lastname'].value;
     this.registerDto.email = this.registerForm.controls['email'].value;
     this.registerDto.password = this.registerForm.controls['password'].value;
-    // Fix date type later
-    this.registerDto.dateOfBirth = `${this.registerForm.controls['yearOfBirth'].value}-${this.registerForm.controls['monthOfBirth'].value}-${this.registerForm.controls['dayOfBirth'].value}`;
+    const monthNumber = this.months.indexOf(this.registerForm.controls['monthOfBirth'].value) + 1;
+    this.registerDto.dateOfBirth = new Date(`${this.registerForm.controls['yearOfBirth'].value}-${monthNumber}-${this.registerForm.controls['dayOfBirth'].value}`);
     this.registerDto.address.addressLine1 = this.registerForm.controls['addressLine1'].value;
     this.registerDto.address.addressLine2 = this.registerForm.controls['addressLine2'].value;
     this.registerDto.address.city = this.registerForm.controls['city'].value;
