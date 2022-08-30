@@ -33,13 +33,6 @@ export class LoginComponent {
       })
     }
 
-  shouldDisplayRequiredError(control: AbstractControl | null): boolean {
-    if (control) {
-      return control.hasError('required') && control.touched;
-    }
-    return false;
-  }
-
   onSubmit(): void {
     if (this.isLoading) return;
     this.isLoading = true;
