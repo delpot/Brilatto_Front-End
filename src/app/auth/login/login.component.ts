@@ -76,7 +76,6 @@ export class LoginComponent {
     next: (res) => {
       console.log(res);
       this.authService.saveToken(res.token);
-      alert('Vous êtes connecté(e)!');
       this.router.navigate(['/categories']);
     },
     error: (err) => {

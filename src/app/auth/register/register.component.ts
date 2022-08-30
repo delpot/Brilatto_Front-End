@@ -215,7 +215,7 @@ export class RegisterComponent {
     .subscribe({
       next: (res) => {
         console.log(res);
-        alert('Vous êtes inscrit(e)!');
+        alert('Bienvenue chez Brilatto!');
         this.router.navigate(['/login'])
       },
       error: (err) => {
