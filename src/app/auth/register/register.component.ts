@@ -208,7 +208,7 @@ export class RegisterComponent {
 
     createUserWithEmailAndPassword(auth, this.registerDto.email, this.registerDto.password)
       .then((userCredential) => {
-        console.log(`User registered in Firebase: ${userCredential.user.email}`);
+        console.log(`User in Firebase: ${userCredential.user.email}`);
         alert('Vous êtes inscrit(e)!');
       })
       .catch((error) => {
