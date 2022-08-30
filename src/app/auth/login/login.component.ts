@@ -4,6 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { AuthService } from '../auth.service';
 import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private router: Router
     ) {
       this.loginDto = {
         email: '',
@@ -53,6 +55,7 @@ export class LoginComponent {
           console.log(res)
           });
         alert('Vous êtes connecté(e)!');
+        this.router.navigate(['/categories']);
       })
       .catch((error) => {
         switch (error.code) {
