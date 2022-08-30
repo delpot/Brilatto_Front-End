@@ -168,16 +168,6 @@ export class RegisterComponent {
     return false;
   }
 
-  // isInvalid(): boolean {
-  //   for (const control of Object.values(this.registerForm.controls)) {
-  //     if (control.errors) {
-  //       console.log(control.errors)
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // }
-
   isLoading: boolean = false;
   isSuccessful = false;
   isSignUpFailed = false;
