@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { LoginForm } from '../models/login-form.interface';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { AuthService } from '../auth.service';
-import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -76,7 +75,9 @@ export class LoginComponent {
     next: (res) => {
       console.log(res);
       this.authService.saveToken(res.token);
-      this.router.navigate(['/categories']);
+      this.router
+        .navigate(['/'])
+        .then(() => window.location.reload());
     },
     error: (err) => {
       console.log(`${err.statusText}: ${err.error}`);

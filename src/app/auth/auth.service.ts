@@ -44,4 +44,13 @@ export class AuthService {
   saveToken(token: string): void{
     localStorage.setItem('token', token);
   }
+
+  isLoggedIn(): boolean{
+    const token = localStorage.getItem('token');
+    return token ? true : false;
+  }
+
+  clearToken(): void {
+    localStorage.removeItem('token');
+}
 }
