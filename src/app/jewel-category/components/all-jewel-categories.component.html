@@ -1,6 +1,6 @@
 <ul class="categories">
   <ng-container *ngFor="let category of categories">
-    <a [title]="category.name" [routerLink]="['/categories', category.name]">
+    <a [title]="category.name" [routerLink]="['/', category.name]">
       <app-jewel-category [category]="category"> </app-jewel-category>
     </a>
   </ng-container>
