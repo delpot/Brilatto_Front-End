@@ -1,6 +1,8 @@
-<li>
-  <img [src]="category.image" [alt]="category.description" width="200" />
-  <div>
+<li class="category">
+  <div class="label">
     <p>{{ category.name | titlecase }}</p>
+  </div>
+  <div class="image">
+    <img [src]="category.image" [alt]="category.description" />
   </div>
 </li>

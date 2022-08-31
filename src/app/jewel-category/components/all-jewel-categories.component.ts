@@ -15,11 +15,13 @@ export class AllJewelCategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.jewelCategoryService.getAllJewelCategories().subscribe({
       next: (res) => {
-        console.log(res);
         this.categories = res;
+        for (const category of this.categories) {
+          const imagePath = `./assets/img/${category.image}`;
+          category.image = imagePath;
+        }
       },
       error: (err) => {
-        console.log(err);
         console.log(`${err.statusText}: ${err.error}`);
       }
     });

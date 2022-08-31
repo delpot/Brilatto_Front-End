@@ -22,7 +22,6 @@ export class JewelCategoryService {
 
   constructor(private http: HttpClient) {}
 
-  // FIXME: image path from db
   getAllJewelCategories(): Observable<any> {
     return this.http.get<any>(
       environment.baseUrl + this.CATEGORIES_URL,
