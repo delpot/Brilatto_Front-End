@@ -13,6 +13,15 @@ export class AllJewelCategoriesComponent implements OnInit {
   constructor(private jewelCategoryService: JewelCategoryService) {}
 
   ngOnInit(): void {
-    this.categories = this.jewelCategoryService.getAllJewelCategories();
+    this.jewelCategoryService.getAllJewelCategories().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.categories = res;
+      },
+      error: (err) => {
+        console.log(err);
+        console.log(`${err.statusText}: ${err.error}`);
+      }
+    });
   }
 }
