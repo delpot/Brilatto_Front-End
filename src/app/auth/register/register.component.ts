@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RegisterForm } from '../models/register-form.interface';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { HttpResponse } from '@angular/common/http';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
