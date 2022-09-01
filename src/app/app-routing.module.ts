@@ -7,7 +7,7 @@ import { JewelCategoryComponent } from './jewel-category/components/jewel-catego
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'categories/:categoryName', component: JewelCategoryComponent },
+  { path: ':categoryName', component: JewelCategoryComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];
