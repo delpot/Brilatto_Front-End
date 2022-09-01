@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { JewelCategoryComponent } from './jewel-category.component';
+import { CategoriesListComponent } from './categories-list.component';
 
-describe('JewelCategoryComponent', () => {
-  let component: JewelCategoryComponent;
-  let fixture: ComponentFixture<JewelCategoryComponent>;
+describe('CategoriesListComponent', () => {
+  let component: CategoriesListComponent;
+  let fixture: ComponentFixture<CategoriesListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JewelCategoryComponent ]
+      declarations: [ CategoriesListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(JewelCategoryComponent);
+    fixture = TestBed.createComponent(CategoriesListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,7 @@
 <ul class="models">
     <ng-container *ngFor="let model of models">
       <a [title]="model.name" [routerLink]="['/', categoryName, model.name]">
-        <app-one-model [model]="model"></app-one-model>
+        <app-model-details [model]="model"></app-model-details>
       </a>
     </ng-container>
   </ul>

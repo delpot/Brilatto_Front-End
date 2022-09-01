@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JewelModelService } from 'src/app/jewel-model/services/jewel-model.service';
+import { JewelModelService } from 'src/app/jewel-model/jewel-model.service';
 import { Jewel } from '../../jewel.interface';
 import { JewelService } from '../../jewel.service';
 

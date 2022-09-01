@@ -1,14 +1,14 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { JewelCategory } from 'src/app/jewel-category/types/JewelCategory';
-import { JewelCategoryService } from 'src/app/jewel-category/services/jewel-category.service';
+import { Component, OnInit } from '@angular/core';
+import { JewelCategory } from 'src/app/jewel-category/jewel-category.interface';
+import { JewelCategoryService } from 'src/app/jewel-category/jewel-category.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-all-jewel-categories',
-  templateUrl: './all-jewel-categories.component.html',
-  styleUrls: ['./all-jewel-categories.component.css'],
+  selector: 'app-categories-list',
+  templateUrl: './categories-list.component.html',
+  styleUrls: ['./categories-list.component.css'],
 })
-export class AllJewelCategoriesComponent implements OnInit {
+export class CategoriesListComponent implements OnInit {
   categories: JewelCategory[] = [];
 
   constructor(
@@ -30,8 +30,4 @@ export class AllJewelCategoriesComponent implements OnInit {
       }
     });
   }
-
-  // onSelect(category: JewelCategory) {
-  //   this.router.navigate(['', category.name])
-  // }
 }

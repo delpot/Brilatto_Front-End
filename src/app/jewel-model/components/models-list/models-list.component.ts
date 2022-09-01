@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JewelModel } from '../../interfaces/jewel-model.interface';
-import { JewelModelService } from '../../services/jewel-model.service';
+import { JewelModel } from '../../jewel-model.interface';
+import { JewelModelService } from '../../jewel-model.service';
 
 @Component({
   selector: 'app-all-models',
-  templateUrl: './all-models.component.html',
-  styleUrls: ['./all-models.component.css']
+  templateUrl: './models-list.component.html',
+  styleUrls: ['./models-list.component.css']
 })
-export class AllModelsComponent implements OnInit {
+export class ModelsListComponent implements OnInit {
 
   categoryName: string = '';
   models: JewelModel[] = [];

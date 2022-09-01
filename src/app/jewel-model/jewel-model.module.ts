@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from '../app-routing.module';
-import { AllModelsComponent } from './components/all-models/all-models.component';
-import { OneModelComponent } from './components/one-model/one-model.component';
+import { ModelsListComponent } from './components/models-list/models-list.component';
+import { ModelDetailsComponent } from './components/model-details/model-details.component';
 
 @NgModule({
-  declarations: [OneModelComponent, AllModelsComponent],
+  declarations: [ModelDetailsComponent, ModelsListComponent],
   providers: [],
   imports: [CommonModule, AppRoutingModule],
   exports: [],
