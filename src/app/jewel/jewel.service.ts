@@ -6,10 +6,9 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class JewelModelService {
+export class JewelService {
   ROOT_URL = 'http://localhost:8000';
-  MODELS_LIST_URL = '/api/models/category/';
-  MODEL_DETAILS_URL = '/api/models/';
+  JEWELS_URL = '/api/models/category/';
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
@@ -23,17 +22,10 @@ export class JewelModelService {
 
   constructor(private http: HttpClient) {}
 
-  getAllJewelModelsByCategoryName(categoryName: string): Observable<any> {
+  getAllJewelByModelId(modelId: string): Observable<any> {
     return this.http.get<any>(
-      environment.baseUrl + this.MODELS_LIST_URL + categoryName,
+      environment.baseUrl + this.JEWELS_URL + modelId,
       this.httpOptions
     );
-  }
-
-  getOneModel(modelId: string): Observable<any> {
-    return this.http.get<any>(
-      environment.baseUrl + this.MODEL_DETAILS_URL + modelId,
-      this.httpOptions
-    )
-  }
+}
 }

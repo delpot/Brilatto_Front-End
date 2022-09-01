@@ -1,0 +1,7 @@
+<ul class="jewels">
+    <ng-container *ngFor="let jewel of jewels">
+      <a [title]="jewel.name">
+        <app-jewel-details [jewel]="jewel"></app-jewel-details>
+      </a>
+    </ng-container>
+</ul>

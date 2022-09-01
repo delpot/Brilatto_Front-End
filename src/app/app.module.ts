@@ -9,6 +9,9 @@ import { HeaderComponent } from './header/header.component';
 import { JewelCategoryModule } from './jewel-category/jewel-category.module';
 import { HomeComponent } from './home/home.component';
 import { JewelModelModule } from './jewel-model/jewel-model.module';
+import { JewelsListComponent } from './jewel/components/jewels-list/jewels-list.component';
+import { JewelDetailsComponent } from './jewel/components/jewel-details/jewel-details.component';
+import { JewelModule } from './jewel/jewel.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent],
@@ -18,7 +21,8 @@ import { JewelModelModule } from './jewel-model/jewel-model.module';
     JewelCategoryModule,
     AuthModule,
     HttpClientModule,
-    JewelModelModule
+    JewelModelModule,
+    JewelModule,
   ],
   bootstrap: [AppComponent],
 })
