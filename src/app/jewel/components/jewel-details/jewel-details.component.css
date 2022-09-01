@@ -2,4 +2,16 @@
     text-align: center;
     margin: 1rem;
     max-width: 50rem;
-  }
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+button {
+    margin: 0.2rem;
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+}
