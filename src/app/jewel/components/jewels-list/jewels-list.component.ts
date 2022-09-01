@@ -16,26 +16,23 @@ export class JewelsListComponent implements OnInit {
 
   constructor(
     private jewelService: JewelService,
-    private modelService: JewelModelService,
     private router: Router,
     private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    const modelName = this.route.snapshot.paramMap.get('modelName');
+    const modelId = this.route.snapshot.paramMap.get('modelId');
 
-    if (!modelName) {
+    if (modelId) {
+      this.modelId = modelId;
+    } else {
       this.router.navigate(['']);
       return;
     }
 
-    this.jewelService.getAllJewelByModelId(this.modelId).subscribe({
+    this.jewelService.getAllJewelsByModelId(this.modelId).subscribe({
       next: (res) => {
         this.jewels = res;
-        // for (const model of this.models) {
-        //   const imagePath = `./assets/img/${model.image}`;
-        //   model.image = imagePath;
-        // }
       },
       error: (err) => {
         console.log(`${err.statusText}: ${err.error}`);

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class JewelService {
   ROOT_URL = 'http://localhost:8000';
-  JEWELS_URL = '/api/models/category/';
+  JEWELS_URL = '/api/jewels/model/';
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
@@ -22,7 +22,7 @@ export class JewelService {
 
   constructor(private http: HttpClient) {}
 
-  getAllJewelByModelId(modelId: string): Observable<any> {
+  getAllJewelsByModelId(modelId: string): Observable<any> {
     return this.http.get<any>(
       environment.baseUrl + this.JEWELS_URL + modelId,
       this.httpOptions
