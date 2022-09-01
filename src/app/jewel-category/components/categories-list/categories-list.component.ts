@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JewelCategory } from 'src/app/jewel-category/jewel-category.interface';
 import { JewelCategoryService } from 'src/app/jewel-category/jewel-category.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories-list',
@@ -13,7 +12,6 @@ export class CategoriesListComponent implements OnInit {
 
   constructor(
     private jewelCategoryService: JewelCategoryService,
-    private router: Router,
   ) {}
 
   ngOnInit(): void {
