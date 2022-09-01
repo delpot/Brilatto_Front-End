@@ -23,9 +23,9 @@ export class JewelModelService {
 
   constructor(private http: HttpClient) {}
 
-  getAllJewelModelsByCategoryName(categoryName: string): Observable<any> {
+  getAllJewelModelsByCategoryId(categoryId: string): Observable<any> {
     return this.http.get<any>(
-      environment.baseUrl + this.MODELS_LIST_URL + categoryName,
+      environment.baseUrl + this.MODELS_LIST_URL + categoryId,
       this.httpOptions
     );
   }

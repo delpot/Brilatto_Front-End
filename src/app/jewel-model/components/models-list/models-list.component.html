@@ -1,6 +1,6 @@
 <ul class="models">
     <ng-container *ngFor="let model of models">
-      <a [title]="model.name" [routerLink]="['/', categoryName, model.name]">
+      <a [title]="model.name" [routerLink]="['/', categoryId, model.name]">
         <app-model-details [model]="model"></app-model-details>
       </a>
     </ng-container>

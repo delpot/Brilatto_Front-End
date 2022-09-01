@@ -10,7 +10,7 @@ import { JewelModelService } from '../../jewel-model.service';
 })
 export class ModelsListComponent implements OnInit {
 
-  categoryName: string = '';
+  categoryId: string = '';
   models: JewelModel[] = [];
 
   constructor(
@@ -20,16 +20,16 @@ export class ModelsListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const categoryName = this.route.snapshot.paramMap.get('categoryName');
+    const categoryId = this.route.snapshot.paramMap.get('categoryId');
 
-    if (categoryName) {
-      this.categoryName = categoryName;
+    if (categoryId) {
+      this.categoryId = categoryId;
     } else {
       this.router.navigate(['']);
       return;
     }
 
-    this.jewelModelService.getAllJewelModelsByCategoryName(this.categoryName).subscribe({
+    this.jewelModelService.getAllJewelModelsByCategoryId(this.categoryId).subscribe({
       next: (res) => {
         this.models = res;
         // for (const model of this.models) {
