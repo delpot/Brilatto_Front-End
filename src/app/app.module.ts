@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { HeaderComponent } from './header/header.component';
 import { JewelCategoryModule } from './jewel-category/jewel-category.module';
 import { HomeComponent } from './home/home.component';
+import { JewelModelModule } from './jewel-model/jewel-model.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent],
@@ -16,7 +17,8 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     JewelCategoryModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    JewelModelModule
   ],
   bootstrap: [AppComponent],
 })

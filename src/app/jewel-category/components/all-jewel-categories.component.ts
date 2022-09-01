@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { JewelCategory } from 'src/app/jewel-category/types/JewelCategory';
 import { JewelCategoryService } from 'src/app/jewel-category/services/jewel-category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-jewel-categories',
@@ -10,7 +11,10 @@ import { JewelCategoryService } from 'src/app/jewel-category/services/jewel-cate
 export class AllJewelCategoriesComponent implements OnInit {
   categories: JewelCategory[] = [];
 
-  constructor(private jewelCategoryService: JewelCategoryService) {}
+  constructor(
+    private jewelCategoryService: JewelCategoryService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.jewelCategoryService.getAllJewelCategories().subscribe({
@@ -26,4 +30,8 @@ export class AllJewelCategoriesComponent implements OnInit {
       }
     });
   }
+
+  // onSelect(category: JewelCategory) {
+  //   this.router.navigate(['', category.name])
+  // }
 }
