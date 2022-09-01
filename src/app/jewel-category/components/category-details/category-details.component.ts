@@ -10,9 +10,4 @@ export class CategoryDetailsComponent {
   @Input() category: JewelCategory = {} as JewelCategory;
 
   constructor() {}
-
-  getCategory() {
-    console.log(this.category);
-    return this.category;
-  }
 }
