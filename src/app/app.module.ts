@@ -9,9 +9,10 @@ import { HeaderComponent } from './header/header.component';
 import { JewelCategoryModule } from './jewel-category/jewel-category.module';
 import { HomeComponent } from './home/home.component';
 import { JewelModelModule } from './jewel-model/jewel-model.module';
-import { JewelsListComponent } from './jewel/components/jewels-list/jewels-list.component';
-import { JewelDetailsComponent } from './jewel/components/jewel-details/jewel-details.component';
 import { JewelModule } from './jewel/jewel.module';
+import { CartComponent } from './cart/components/cart/cart.component';
+import { AddedJewelComponent } from './cart/components/added-jewel/added-jewel.component';
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent],
@@ -23,6 +24,7 @@ import { JewelModule } from './jewel/jewel.module';
     HttpClientModule,
     JewelModelModule,
     JewelModule,
+    CartModule
   ],
   bootstrap: [AppComponent],
 })

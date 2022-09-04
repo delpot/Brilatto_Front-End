@@ -1,0 +1,15 @@
+<div *ngIf="addedJewels.length === 0" class="cart">
+    <p>Votre panier est vide.</p>
+</div>
+
+<ul *ngIf="addedJewels.length > 0" class="addedJewels">
+    <ng-container *ngFor="let jewel of addedJewels">
+      <a [title]="jewel.color">
+        <app-added-jewel [jewel]="jewel"></app-added-jewel>
+      </a>
+    </ng-container>
+</ul>
+
+<div class="total">
+  <p>Total: {{ cartTotal | currency:'EUR'}}</p>
+</div>
