@@ -6,11 +6,11 @@
 </td>
 <td>
     <div class="quantity">
-        <button (click)="updateQuantity(jewel, false)">
+        <button (click)="updateQuantity(false)">
             -
         </button>
-        <span>{{jewel.quantity}}</span>
-        <button (click)="updateQuantity(jewel, true)">
+        <span>{{quantity}}</span>
+        <button (click)="updateQuantity(true)">
             +
         </button>
         <p 
@@ -22,7 +22,7 @@
     </div>
 </td>
 <td>
-    {{ (jewel.price * jewel.quantity) | currency:'EUR'}}
+    {{ (jewel.price * quantity) | currency:'EUR'}}
 </td>
 <td>
     <button>

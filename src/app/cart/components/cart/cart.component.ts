@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Converter } from 'src/app/utils/converter.utils';
 import { Jewel } from '../../../jewel/jewel.interface';
 import { CartService } from '../../cart.service';
 
@@ -9,9 +10,9 @@ import { CartService } from '../../cart.service';
 })
 export class CartComponent implements OnInit {
 
-  addedJewels: Jewel[] = [];
-
+  addedJewels = new Map<Jewel, number>();
   cartTotal: number = 0;
+  listJewel : Jewel[] = [];
 
   constructor(private cartService: CartService) {
     this.cartService.cartTotalSubject.subscribe(
@@ -27,17 +28,13 @@ export class CartComponent implements OnInit {
   }
 
   cartDetails() {
-    const localCart = localStorage.getItem('cart');
-    if (localCart) {
-      this.addedJewels = JSON.parse(localCart)
-    }
+    this.addedJewels = Converter.GetJewelMap();
+    this.listJewel =  Array.from(this.addedJewels.keys());
   }
 
   computeTotal() {
-    const localCart = localStorage.getItem('cart');      
-      for (const jewel of this.addedJewels) {
-        this.cartTotal += (jewel.price * jewel.quantity)
-      }
+    this.cartTotal = Converter.GetCartCounter(this.addedJewels);
   }
+
 
 }

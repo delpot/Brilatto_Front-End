@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/cart/cart.service';
+import { Converter } from 'src/app/utils/converter.utils';
 import { Jewel } from '../../jewel.interface';
 
 @Component({
@@ -9,7 +10,7 @@ import { Jewel } from '../../jewel.interface';
 })
 export class JewelDetailsComponent implements OnInit {
   @Input() jewel: Jewel = {} as Jewel;
-  addedJewels: Jewel[]= [];
+  addedJewels : Map<Jewel, number> = new Map<Jewel, number>();
   // maxQuantityReached: boolean = false;
   cartCounter: number = 0;
 
@@ -18,37 +19,18 @@ export class JewelDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // add(jewel: Jewel) {
-  //   if (jewel.quantity < jewel.quantityInStock) {
-  //     jewel.quantity += 1;
-  //   } else {
-  //     this.maxQuantityReached = true;
-  //   }
-  // }
+  addToCart(jewel:Jewel) {
+    this.addedJewels = Converter.GetJewelMap();
 
-  // subtract(jewel: Jewel) {
-  //   this.maxQuantityReached = false;
-  //   if (jewel.quantity > 0) {
-  //     jewel.quantity =  jewel.quantity - 1;
-  //   }
-  // }
+    const jewelFromMap = Converter.GetJewelFromMap(this.addedJewels, jewel);
+    
+    if (jewelFromMap) {
+      this.addedJewels.set(jewelFromMap, this.addedJewels.get(jewelFromMap)! + 1);
+    }else {
+      this.addedJewels.set(jewel, 1);
+    }      
+    Converter.SetJewelMapToLocal(this.addedJewels);
 
-  addToCart(jewel: Jewel): void {
-    const localCart = localStorage.getItem('cart');
-    jewel.quantity += 1;
-
-    if (localCart) {
-      this.addedJewels = JSON.parse(localCart);
-      this.addedJewels.push(jewel);
-      localStorage.setItem('cart', JSON.stringify(this.addedJewels))
-    } else {
-      let storeCartData = [];
-      storeCartData.push(jewel);
-      localStorage.setItem('cart', JSON.stringify(storeCartData));
-    }
-
-    this.cartCounter = this.addedJewels.length;
-    this.cartService.cartSubject.next(this.cartCounter);
+    this.cartService.cartSubject.next(Converter.GetCartCounter(this.addedJewels));
   }
-
 }

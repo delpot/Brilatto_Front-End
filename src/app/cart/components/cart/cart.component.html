@@ -1,11 +1,11 @@
-<div *ngIf="addedJewels.length === 0" class="cart">
+<div *ngIf="addedJewels.size === 0" class="cart">
     <p>Votre panier est vide.</p>
 </div>
 
-<ul *ngIf="addedJewels.length > 0" class="addedJewels">
+<ul *ngIf="addedJewels.size  > 0" class="addedJewels">
   <h2>Panier</h2>
-    <tr *ngFor="let jewel of addedJewels">
-        <app-added-jewel [jewel]="jewel"></app-added-jewel>
+    <tr *ngFor="let jewel of listJewel">
+        <app-added-jewel [jewel]="jewel" [addedJewels]="addedJewels"></app-added-jewel>
     </tr>
 </ul>
 

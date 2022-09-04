@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { CartService } from '../cart/cart.service';
+import { Converter } from '../utils/converter.utils';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  {
   isLoggedIn: boolean = this.authService.isLoggedIn()
   cartCounter: number = 0;
 
@@ -23,19 +24,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.countAddedJewels();
+    this.cartCounter = Converter.GetCartCounter(Converter.GetJewelMap());
   }
 
   logout(): void {
     this.authService.clearToken();
     this.isLoggedIn = false;
 }
-
-  countAddedJewels(): number {
-    const localCart = localStorage.getItem('cart')
-    if (localCart) {
-      this.cartCounter = JSON.parse(localCart).length;
-    }
-    return this.cartCounter;
-  }
 }
