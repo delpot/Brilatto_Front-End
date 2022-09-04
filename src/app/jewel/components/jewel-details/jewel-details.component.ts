@@ -35,6 +35,7 @@ export class JewelDetailsComponent implements OnInit {
 
   addToCart(jewel: Jewel): void {
     const localCart = localStorage.getItem('cart');
+    jewel.quantity += 1;
 
     if (localCart) {
       this.addedJewels = JSON.parse(localCart);

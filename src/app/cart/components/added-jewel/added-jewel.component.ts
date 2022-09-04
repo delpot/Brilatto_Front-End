@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { JewelCategoryModule } from 'src/app/jewel-category/jewel-category.module';
 import { Jewel } from 'src/app/jewel/jewel.interface';
 import { CartService } from '../../cart.service';
 

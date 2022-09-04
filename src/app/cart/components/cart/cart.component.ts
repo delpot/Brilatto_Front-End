@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Jewel } from '../../../jewel/jewel.interface';
-import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,11 +12,11 @@ export class CartComponent implements OnInit {
 
   cartTotal: number = 0;
 
-  constructor(private cartService: CartService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.cartDetails()
-    this.computeTotal()
+    this.cartDetails();
+    this.computeTotal();
   }
 
   cartDetails() {
@@ -28,9 +27,10 @@ export class CartComponent implements OnInit {
   }
 
   computeTotal() {
-    for (const jewel of this.addedJewels) {
-      this.cartTotal += (jewel.price * jewel.quantity)
-    }
+    const localCart = localStorage.getItem('cart');      
+      for (const jewel of this.addedJewels) {
+        this.cartTotal += (jewel.price * jewel.quantity)
+      }
   }
 
 }
