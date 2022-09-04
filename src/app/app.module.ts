@@ -10,8 +10,6 @@ import { JewelCategoryModule } from './jewel-category/jewel-category.module';
 import { HomeComponent } from './home/home.component';
 import { JewelModelModule } from './jewel-model/jewel-model.module';
 import { JewelModule } from './jewel/jewel.module';
-import { CartComponent } from './cart/components/cart/cart.component';
-import { AddedJewelComponent } from './cart/components/added-jewel/added-jewel.component';
 import { CartModule } from './cart/cart.module';
 
 @NgModule({
