@@ -17,12 +17,19 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartDetails()
+    this.computeTotal()
   }
 
   cartDetails() {
     const localCart = localStorage.getItem('cart');
     if (localCart) {
       this.addedJewels = JSON.parse(localCart)
+    }
+  }
+
+  computeTotal() {
+    for (const jewel of this.addedJewels) {
+      this.cartTotal += (jewel.price * jewel.quantity)
     }
   }
 
