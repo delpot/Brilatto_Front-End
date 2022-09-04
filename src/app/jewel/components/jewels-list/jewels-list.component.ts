@@ -33,6 +33,10 @@ export class JewelsListComponent implements OnInit {
     this.jewelService.getAllJewelsByModelId(this.modelId).subscribe({
       next: (res) => {
         this.jewels = res;
+        for (const jewel of this.jewels) {
+          const imagePath = `./assets/img/${jewel.photo}`;
+          jewel.photo = imagePath;
+        }
       },
       error: (err) => {
         console.log(`${err.statusText}: ${err.error}`);

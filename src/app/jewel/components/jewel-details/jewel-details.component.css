@@ -4,11 +4,16 @@
     max-width: 50rem;
 }
 
-.buttons {
+.image {
+    max-width: 10rem;
+}
+
+.quantity {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
+
 button {
     margin: 0.2rem;
     padding: 0.5rem;

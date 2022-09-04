@@ -1,6 +1,7 @@
 export interface Jewel {
     color: string;
     quantity: number;
+    quantityInStock: number;
     price: number;
-    image: string;
+    photo: string;
   }
