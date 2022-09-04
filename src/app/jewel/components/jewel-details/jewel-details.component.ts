@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartService } from 'src/app/cart/cart.service';
 import { Jewel } from '../../jewel.interface';
 
 @Component({
@@ -10,8 +11,9 @@ export class JewelDetailsComponent implements OnInit {
   @Input() jewel: Jewel = {} as Jewel;
   addedJewels: Jewel[]= [];
   maxQuantityReached: boolean = false;
+  cartCounter: number = 0;
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
   }
@@ -34,17 +36,18 @@ export class JewelDetailsComponent implements OnInit {
   addToCart(jewel: Jewel): void {
     const localCart = localStorage.getItem('cart');
 
-    if (localCart === null) {
-      let storeCartData = [];
-      storeCartData.push(jewel);
-      localStorage.setItem('cart', JSON.stringify(storeCartData));
-    } else {
+    if (localCart) {
       this.addedJewels = JSON.parse(localCart);
       this.addedJewels.push(jewel);
       localStorage.setItem('cart', JSON.stringify(this.addedJewels))
+    } else {
+      let storeCartData = [];
+      storeCartData.push(jewel);
+      localStorage.setItem('cart', JSON.stringify(storeCartData));
     }
 
-    window.location.reload()
+    this.cartCounter = this.addedJewels.length;
+    this.cartService.cartSubject.next(this.cartCounter);
   }
 
 }
