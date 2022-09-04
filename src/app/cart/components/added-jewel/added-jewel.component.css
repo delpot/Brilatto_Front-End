@@ -5,6 +5,10 @@
     margin: 3rem;
 }
 
+img {
+    max-width: 10rem;
+}
+
 p {
     display: flex;
     justify-content: center;

@@ -1,8 +1,31 @@
-<div class="addedJewel">
-    <p>{{jewel.color}}</p>
-    <p>{{jewel.quantity}}</p>
-    <p>{{ (jewel.price * jewel.quantity) | currency:'EUR'}}</p>
+<td>
+    <img [src]="jewel.photo" />
+</td>
+<td>
+    {{jewel.color}}
+</td>
+<td>
+    <div class="quantity">
+        <button (click)="add(jewel)">
+            +
+        </button>
+        <span>{{jewel.quantity}}</span>
+        <button (click)="subtract(jewel)">
+            -
+        </button>
+        <p 
+            *ngIf="maxQuantityReached"
+            class="text-red-700 text-xs font-medium mb-2" 
+            >
+            Vous avez atteint la limite.
+        </p>
+    </div>
+</td>
+<td>
+    {{ (jewel.price * jewel.quantity) | currency:'EUR'}}
+</td>
+<td>
     <button>
         Retirer
     </button>
-</div>
+</td>

@@ -4,19 +4,9 @@
 
 <ul *ngIf="addedJewels.length > 0" class="addedJewels">
   <h2>Panier</h2>
-  <table>
-    <tr>
-      <th>Bijou</th>
-      <th>Prix</th>
-      <th>Quantité</th>
-      <th>Total</th>
-    </tr>
-  </table>
-    <ng-container *ngFor="let jewel of addedJewels">
-      <a [title]="jewel.color">
+    <tr *ngFor="let jewel of addedJewels">
         <app-added-jewel [jewel]="jewel"></app-added-jewel>
-      </a>
-    </ng-container>
+    </tr>
 </ul>
 
 <div class="total">
