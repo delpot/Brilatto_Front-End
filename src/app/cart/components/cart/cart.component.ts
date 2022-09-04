@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Jewel } from '../../../jewel/jewel.interface';
+import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,13 @@ export class CartComponent implements OnInit {
 
   cartTotal: number = 0;
 
-  constructor() {}
+  constructor(private cartService: CartService) {
+    this.cartService.cartTotalSubject.subscribe(
+      data => {
+        this.cartTotal = data;
+      }
+    )
+  }
 
   ngOnInit(): void {
     this.cartDetails();

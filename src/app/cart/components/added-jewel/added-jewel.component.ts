@@ -17,48 +17,51 @@ export class AddedJewelComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  add(jewel: Jewel) {  
-    if (jewel.quantity < jewel.quantityInStock) {
+  updateQuantity(jewel: Jewel, add: boolean) { 
+    const localCart = localStorage.getItem('cart');
+
+    if (!localCart) {
+      return;
+    }
+
+    const addedJewels = JSON.parse(localCart);
+    const jewelToUpdate = addedJewels.find((j: Jewel) => j.color === jewel.color);
+    const index = addedJewels.indexOf(jewelToUpdate);
+    if (index === -1) {
+      return;
+    }
+    
+    if (add) {
       jewel.quantity += 1;
-      const localCart = localStorage.getItem('cart');
-      if (localCart) {
-        const addedJewels = JSON.parse(localCart);
-        addedJewels.push(jewel);
-        localStorage.setItem('cart', JSON.stringify(addedJewels))
-        const cartCounter = addedJewels.length;
-        this.cartService.cartSubject.next(cartCounter);
+      if (jewel.quantity < jewel.quantityInStock) {
+          addedJewels[index].quantity = jewel.quantity;
       } else {
-        let storeCartData = [];
-        storeCartData.push(jewel);
-        localStorage.setItem('cart', JSON.stringify(storeCartData));
-        const cartCounter = storeCartData.length;
-        this.cartService.cartSubject.next(cartCounter);
+        jewel.quantity--;
+        this.maxQuantityReached = true;
       }
     } else {
-      this.maxQuantityReached = true;
-    }
-  }
-
-  subtract(jewel: Jewel) {
-    this.maxQuantityReached = false;
-
-    if (jewel.quantity > 0) {
-
-      jewel.quantity =  jewel.quantity - 1;
-
-      const localCart = localStorage.getItem('cart');
-
-      if (localCart) {
-        const addedJewels = JSON.parse(localCart);
-        const jewelToRemove = addedJewels.find((j: Jewel) => j.color === jewel.color);
-        const index = addedJewels.indexOf(jewelToRemove);
-        if (index > -1) {
-          addedJewels.splice(index, 1);
-        }
-        localStorage.setItem('cart', JSON.stringify(addedJewels))
-        const cartCounter = addedJewels.length;
-        this.cartService.cartSubject.next(cartCounter);
+      jewel.quantity--;
+      if (jewel.quantity >= 0) {
+          addedJewels[index].quantity = jewel.quantity;
+      } else {
+        jewel.quantity = 0
       }
     }
+
+      localStorage.setItem('cart', JSON.stringify(addedJewels))
+      const cartCounter = addedJewels.length;
+      this.cartService.cartSubject.next(cartCounter);
+      const total = this.computeTotal(addedJewels);
+      this.cartService.cartTotalSubject.next(total);
+  }
+
+  computeTotal(jewels: Jewel[]) {
+    let cartTotal = 0;  
+
+      for (const jewel of jewels) {
+        console.log(jewel.price * jewel.quantity);
+        cartTotal += (jewel.price * jewel.quantity)
+      }
+      return cartTotal;
   }
 }

@@ -6,12 +6,12 @@
 </td>
 <td>
     <div class="quantity">
-        <button (click)="add(jewel)">
-            +
+        <button (click)="updateQuantity(jewel, false)">
+            -
         </button>
         <span>{{jewel.quantity}}</span>
-        <button (click)="subtract(jewel)">
-            -
+        <button (click)="updateQuantity(jewel, true)">
+            +
         </button>
         <p 
             *ngIf="maxQuantityReached"

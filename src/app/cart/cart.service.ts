@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { Jewel } from '../jewel/jewel.interface';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +7,7 @@ import { Jewel } from '../jewel/jewel.interface';
 export class CartService {
 
     cartSubject = new Subject<any>()
+    cartTotalSubject = new Subject<any>()
 
   constructor() {}
   

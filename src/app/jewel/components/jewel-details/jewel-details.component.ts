@@ -10,7 +10,7 @@ import { Jewel } from '../../jewel.interface';
 export class JewelDetailsComponent implements OnInit {
   @Input() jewel: Jewel = {} as Jewel;
   addedJewels: Jewel[]= [];
-  maxQuantityReached: boolean = false;
+  // maxQuantityReached: boolean = false;
   cartCounter: number = 0;
 
   constructor(private cartService: CartService) { }
@@ -18,20 +18,20 @@ export class JewelDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  add(jewel: Jewel) {
-    if (jewel.quantity < jewel.quantityInStock) {
-      jewel.quantity += 1;
-    } else {
-      this.maxQuantityReached = true;
-    }
-  }
+  // add(jewel: Jewel) {
+  //   if (jewel.quantity < jewel.quantityInStock) {
+  //     jewel.quantity += 1;
+  //   } else {
+  //     this.maxQuantityReached = true;
+  //   }
+  // }
 
-  subtract(jewel: Jewel) {
-    this.maxQuantityReached = false;
-    if (jewel.quantity > 0) {
-      jewel.quantity =  jewel.quantity - 1;
-    }
-  }
+  // subtract(jewel: Jewel) {
+  //   this.maxQuantityReached = false;
+  //   if (jewel.quantity > 0) {
+  //     jewel.quantity =  jewel.quantity - 1;
+  //   }
+  // }
 
   addToCart(jewel: Jewel): void {
     const localCart = localStorage.getItem('cart');
