@@ -57,7 +57,7 @@
   </td>
   <td class="cart-column">{{ (jewel.price * quantity) | currency:'EUR'}}</td>
   <td class="cart-column">
-    <button>
+    <button (click)="removeJewelFromCart(jewel)">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="w-6 h-6 text-red-400"

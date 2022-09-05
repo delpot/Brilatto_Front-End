@@ -47,4 +47,11 @@ export class AddedJewelComponent implements OnInit {
     this.cartService.cartSubject.next(Converter.GetCartCounter(this.addedJewels));
     this.cartService.cartTotalSubject.next(Converter.GetTotalCart(this.addedJewels));
   }
+
+  removeJewelFromCart(jewel: Jewel) {
+    this.addedJewels.delete(jewel);
+    Converter.SetJewelMapToLocal(this.addedJewels)
+    this.cartService.cartSubject.next(Converter.GetCartCounter(this.addedJewels));
+    this.cartService.cartTotalSubject.next(Converter.GetTotalCart(this.addedJewels));
+  }
 }
