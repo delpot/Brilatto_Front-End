@@ -13,19 +13,6 @@ h3 {
     text-align: center;
 }
 
-tr {
-    background-color: #F3F4F6;
-} 
-
-th {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem; 
-    padding-left: 1.5rem;
-    padding-right: 1.5rem; 
-    font-weight: 700; 
-    white-space: nowrap; 
-}
-
 .cart-total {
     margin-top: 1rem; 
     padding: 1rem; 

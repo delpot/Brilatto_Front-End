@@ -7,16 +7,6 @@
   <h3>Mon panier</h3>
 
   <table>
-    <thead>
-      <tr>
-        <th>Photo</th>
-        <th>Bijou</th>
-        <th>Prix</th>
-        <th>Quantité</th>
-        <th>Total</th>
-        <th>Retirer</th>
-      </tr>
-    </thead>
     <tbody>
       <ng-container *ngFor="let jewel of listJewel">
         <app-added-jewel [jewel]="jewel" [addedJewels]="addedJewels"></app-added-jewel>
