@@ -27,5 +27,12 @@ export class JewelCategoryService {
       environment.baseUrl + this.CATEGORIES_URL,
       this.httpOptions
     );
-}
+  }
+
+  deleteOneCategory(categoryId: string): Observable<any> {
+    return this.http.put<any>(
+      environment.baseUrl + this.CATEGORIES_URL + categoryId + '/softDelete',
+      this.httpOptions
+    )
+  }
 }
