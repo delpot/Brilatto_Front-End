@@ -10,7 +10,7 @@ import { LoginForm } from './models/login-form.interface';
 })
 export class AuthService {
   ROOT_URL = 'http://localhost:8000';
-  LOGIN_URL = '/api/auth/login/';
+  LOGIN_URL = '/api/auth/login';
   SIGNUP_URL = '/api/auth/signup';
   httpOptions = {
     headers: new HttpHeaders({

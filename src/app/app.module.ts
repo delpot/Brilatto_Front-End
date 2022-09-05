@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { JewelModelModule } from './jewel-model/jewel-model.module';
 import { JewelModule } from './jewel/jewel.module';
 import { CartModule } from './cart/cart.module';
+import { JwtInterceptor } from './auth/jwt.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent],
@@ -23,6 +24,9 @@ import { CartModule } from './cart/cart.module';
     JewelModelModule,
     JewelModule,
     CartModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

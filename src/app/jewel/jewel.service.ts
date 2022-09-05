@@ -18,7 +18,7 @@ export class JewelService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
       'Access-Control-Allow-Headers':
         'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
-    }),
+    })
   };
 
   constructor(private http: HttpClient) {}
