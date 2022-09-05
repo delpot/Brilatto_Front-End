@@ -6,12 +6,12 @@ export class Converter {
         return Array.from(jewelMap.keys()).find((j: Jewel) => j._id === jewelToFind._id)!!;
     }
 
-    static GetQuantityFromJewel(jewelMap: Map<Jewel, number>, jewelToFind: Jewel) : number
+    static GetQuantityFromJewel(jewelMap: Map<Jewel, number>, jewelToFind: Jewel): number
     {
         return jewelMap.get(jewelToFind)!!;
     }
     
-    static GetCartCounter(jewelMap: Map<Jewel, number>) : number
+    static GetCartCounter(jewelMap: Map<Jewel, number>): number
     {
         let cartCounter = 0;
         jewelMap.forEach(function(value,key){
@@ -21,7 +21,7 @@ export class Converter {
         return cartCounter;
     }
 
-    static GetTotalCart(jewelMap: Map<Jewel, number>) : number
+    static GetTotalCart(jewelMap: Map<Jewel, number>): number
     {
         let totalpanier = 0;
         jewelMap.forEach(function(qte,jewel){
@@ -31,7 +31,7 @@ export class Converter {
         return totalpanier;
     }
 
-    static GetJewelMap() : Map<Jewel, number>
+    static GetJewelMap(): Map<Jewel, number>
     {
         const localCart = localStorage.getItem('cart');
         const jewelMap:Map<Jewel, number> = new Map(JSON.parse(localCart!));
@@ -41,5 +41,10 @@ export class Converter {
     static SetJewelMapToLocal(jewelMap: Map<Jewel, number>)
     {
         localStorage.setItem('cart', JSON.stringify(Array.from(jewelMap.entries())));
+    }
+
+    static clearCart(): void {
+        localStorage.removeItem('cart');
+        this.GetCartCounter(this.GetJewelMap());
     }
 }

@@ -31,5 +31,6 @@ export class HeaderComponent  {
     this.authService.clearToken();
     this.isLoggedIn = false;
     this.cartCounter = 0;
+    Converter.clearCart();
 }
 }
