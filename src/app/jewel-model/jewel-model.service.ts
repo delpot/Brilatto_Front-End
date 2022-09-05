@@ -2,14 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ModelForm } from './jewel-model.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JewelModelService {
   ROOT_URL = 'http://localhost:8000';
-  MODELS_LIST_URL = '/api/models/category/';
-  MODEL_DETAILS_URL = '/api/models/';
+  MODELS_URL = '/api/models/';
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
@@ -24,15 +24,32 @@ export class JewelModelService {
   constructor(private http: HttpClient) {}
 
   getAllJewelModelsByCategoryId(categoryId: string): Observable<any> {
+    console.log(environment.baseUrl + this.MODELS_URL + 'category/' + categoryId)
     return this.http.get<any>(
-      environment.baseUrl + this.MODELS_LIST_URL + categoryId,
+      environment.baseUrl + this.MODELS_URL + 'category/' + categoryId,
       this.httpOptions
     );
   }
 
   getOneModel(modelId: string): Observable<any> {
     return this.http.get<any>(
-      environment.baseUrl + this.MODEL_DETAILS_URL + modelId,
+      environment.baseUrl + this.MODELS_URL + modelId,
+      this.httpOptions
+    )
+  }
+
+  addOneModel(modelDto: ModelForm) {
+    console.log(modelDto);
+    return this.http.post<any>(
+      environment.baseUrl + this.MODELS_URL + 'add',
+      modelDto,
+      this.httpOptions
+    )
+  }
+
+  deleteOneModel(modelId: string): Observable<any> {
+    return this.http.put<any>(
+      environment.baseUrl + this.MODELS_URL + modelId + '/softDelete',
       this.httpOptions
     )
   }
