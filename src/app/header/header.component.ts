@@ -30,5 +30,6 @@ export class HeaderComponent  {
   logout(): void {
     this.authService.clearToken();
     this.isLoggedIn = false;
+    this.cartCounter = 0;
 }
 }
