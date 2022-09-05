@@ -24,17 +24,12 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartDetails();
-    this.computeTotal();
+    this.cartTotal = Converter.GetTotalCart(this.addedJewels)
   }
 
   cartDetails() {
     this.addedJewels = Converter.GetJewelMap();
     this.listJewel =  Array.from(this.addedJewels.keys());
   }
-
-  computeTotal() {
-    this.cartTotal = Converter.GetCartCounter(this.addedJewels);
-  }
-
 
 }
