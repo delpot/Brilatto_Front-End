@@ -22,3 +22,28 @@ button {
     border: 1px solid black;
     border-radius: 5px;
 }
+
+.jewel-reference {
+    display: flex; 
+    justify-content: center; 
+    padding: 1rem; 
+}
+
+.cart-column {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem; 
+    text-align: center; 
+    white-space: nowrap; 
+}
+
+h3 {
+    padding: 1rem; 
+    padding-left: 1.5rem;
+    padding-right: 1.5rem; 
+    text-align: center; 
+    white-space: nowrap; 
+}
+
+button {
+    border: none
+}

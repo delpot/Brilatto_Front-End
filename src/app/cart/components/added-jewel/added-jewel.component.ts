@@ -19,26 +19,24 @@ export class AddedJewelComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.quantity = this.addedJewels.get(this.jewel)!; //Converter.GetJewelFromMap(this.addedJewels, this.jewel);
-    //this.quantity = Converter.GetQuantityFromJewel(this.addedJewels, jewelFromMap);
+    this.quantity = this.addedJewels.get(this.jewel)!; 
   }
 
   updateQuantity(add: boolean) { 
-    const jewelFromMap = Converter.GetJewelFromMap(this.addedJewels, this.jewel);
     if(!this.quantity) return;
     if (add) {
 
       this.quantity++;
       if (this.quantity <= this.jewel.quantityInStock) {
-        this.addedJewels.set(jewelFromMap, this.quantity);
+        this.addedJewels.set(this.jewel, this.quantity);
       } else {
         this.quantity--;
         this.maxQuantityReached = true;
       }
     } else {
       this.quantity--;
-      if (this.quantity-- > 0) {
-        this.addedJewels.set(jewelFromMap, this.quantity);
+      if (this.quantity > 0) {
+        this.addedJewels.set(this.jewel, this.quantity);
         this.maxQuantityReached = false;
       }else{
         this.quantity++;
