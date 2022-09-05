@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CategoryForm } from './jewel-category.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,14 @@ export class JewelCategoryService {
       environment.baseUrl + this.CATEGORIES_URL,
       this.httpOptions
     );
+  }
+
+  addOneCategory(categoryDto: CategoryForm) {
+    return this.http.post<any>(
+      environment.baseUrl + this.CATEGORIES_URL + 'add',
+      categoryDto,
+      this.httpOptions
+    )
   }
 
   deleteOneCategory(categoryId: string): Observable<any> {

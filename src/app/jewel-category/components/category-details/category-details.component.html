@@ -3,7 +3,7 @@
     <p>{{ category.name | titlecase }}</p>
   </div>
   <div class="image">
-    <img [src]="category.image" [alt]="category.description" />
+    <img [src]="category.photo" [alt]="category.description" />
   </div>
   <button (click)="deleteCategory(category._id)">
     <svg
