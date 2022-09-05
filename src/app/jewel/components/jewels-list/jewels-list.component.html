@@ -1,7 +1,71 @@
+<div class="flex justify-center">
+  <form 
+    [formGroup]="jewelForm"
+    (ngSubmit)="onSubmit()"
+    class="p-4 mt-20 rounded-lg border"
+  >
+    <div class="my-5">
+      <label 
+        class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2"
+      >
+        Nouveau bijou
+      </label>
+      <div class="flex flex-wrap -mx-3 mb-2">
+        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+          <input
+            id="color"
+            type="text"
+            placeholder="Couleur"
+            formControlName="color"
+            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+        </div>
+    
+        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+          <input
+            id="photo"
+            type="text"
+            placeholder="Photo"
+            formControlName="photo"
+            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+        </div>
+
+        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+          <input
+            id="quantityInStock"
+            type="number"
+            placeholder="Quantité en stock"
+            formControlName="quantityInStock"
+            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+        </div>
+    
+        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+          <input
+            id="price"
+            type="number"
+            placeholder="Prix à l'unité"
+            formControlName="price"
+            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+        </div>
+      </div>
+    </div>
+  
+    <button
+      type="submit"
+      class="p-2 w-full bg-blue-700 text-white hover:bg-blue-900 rounded"
+    >
+      <ng-container> Ajouter un bijou </ng-container>
+    </button>
+  </form>
+</div>
+
 <ul class="jewels">
     <ng-container *ngFor="let jewel of jewels">
       <a [title]="jewel.color">
-        <app-jewel-details [jewel]="jewel"></app-jewel-details>
+        <app-jewel-details [jewel]="jewel" [jewels]="jewels"></app-jewel-details>
       </a>
     </ng-container>
 </ul>
