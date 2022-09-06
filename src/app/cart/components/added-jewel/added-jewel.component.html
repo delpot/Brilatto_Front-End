@@ -10,7 +10,7 @@
   <td class="cart-column jewel-reference">
       <h3>{{jewel.name}}</h3>
   </td>
-  <td class="cart-column">{{ jewel.price | currency:'EUR'}}</td>
+  <td class="cart-column">{{ jewel.price}}€</td>
   <td class="cart-column">
       <button (click)="updateQuantity(false)">
         <svg
@@ -55,7 +55,7 @@
       Vous avez atteint la limite.
   </p>
   </td>
-  <td class="cart-column">{{ (jewel.price * quantity) | currency:'EUR'}}</td>
+  <td class="cart-column">{{ jewel.price * quantity }}€</td>
   <td class="cart-column">
     <button (click)="removeJewelFromCart(jewel)">
       <svg

@@ -1,53 +1,48 @@
-<div *ngIf="isAdmin" class="flex justify-center">
+<div *ngIf="isAdmin" class="form">
   <form 
     [formGroup]="categoryForm"
     (ngSubmit)="onSubmit()"
-    class="p-4 mt-20 rounded-lg border"
-  >
-    <div class="my-5">
-      <label 
-        class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2"
-      >
+    >
+    <div>
+      
+      <label>
         Nouvelle catégorie
       </label>
-      <div class="flex flex-wrap -mx-3 mb-2">
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+
+      <div class="inputs">
+
+        <div class="input-container">
           <input
             id="name"
             type="text"
             placeholder="Nom"
             formControlName="name"
-            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
         </div>
     
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div class="input-container">
           <input
             id="photo"
             type="text"
             placeholder="Photo"
             formControlName="photo"
-            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
         </div>
 
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div class="input-container">
           <input
             id="description"
             type="text"
             placeholder="Description"
             formControlName="description"
-            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
         </div>
+
       </div>
     </div>
   
-    <button
-      type="submit"
-      class="p-2 w-full bg-blue-700 text-white hover:bg-blue-900 rounded"
-    >
-      <ng-container> Ajouter une catégorie </ng-container>
+    <button type="submit">
+      <ng-container> Ajouter</ng-container>
     </button>
   </form>
 </div>

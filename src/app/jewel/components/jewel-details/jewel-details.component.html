@@ -4,25 +4,20 @@
     {{ jewel.name | titlecase }}
   </div>
 
-  <div class="photo-container">
-    <img class="photo" [src]="jewel.photo1" [alt]="jewel.description" />
-    <div class="photo-overlay">
-        <img [src]="jewel.photo2"[alt]="jewel.description">
+  <div class="admin-container">
+    <div class="photo-container">
+      <img class="photo" [src]="jewel.photo1" [alt]="jewel.description" />
+      <div class="photo-overlay">
+          <img [src]="jewel.photo2"[alt]="jewel.description">
+      </div>
     </div>
-  </div>
-
-  <div class="price">
-    <p>{{ jewel.price | currency:'EUR' }}</p>
-  </div>
-
-    <button class="add-to-cart-button" (click)="addToCart(jewel)">
-        Ajouter au panier
-    </button>
-
-    <button class="delete-button" *ngIf="isAdmin" (click)="deleteJewel(jewel._id)">
+  
+    <div>
+      <button class="delete-button" *ngIf="isAdmin" (click)="deleteJewel(jewel._id)">
+        <span>Supprimer</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="w-6 h-6 text-red-400"
+          class="w-5 h-5 text-red-400"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -35,5 +30,16 @@
           />
         </svg>
       </button>
+    </div>
+  
+  </div>
+
+  <div class="price">
+    <p>{{ jewel.price}}€</p>
+  </div>
+
+  <button class="add-to-cart-button" (click)="addToCart(jewel)">
+      Ajouter au panier
+  </button>
 
 </li>
