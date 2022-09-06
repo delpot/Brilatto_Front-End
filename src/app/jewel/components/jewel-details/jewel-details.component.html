@@ -27,7 +27,7 @@
         Ajouter au panier
     </button>
 
-    <button (click)="deleteJewel(jewel._id)">
+    <button *ngIf="isAdmin" (click)="deleteJewel(jewel._id)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="w-6 h-6 text-red-400"

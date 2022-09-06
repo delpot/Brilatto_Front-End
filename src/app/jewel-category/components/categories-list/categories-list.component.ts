@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
 import { CategoryForm, JewelCategory } from 'src/app/jewel-category/jewel-category.interface';
 import { JewelCategoryService } from 'src/app/jewel-category/jewel-category.service';
 
@@ -12,10 +13,12 @@ export class CategoriesListComponent implements OnInit {
   categories: JewelCategory[] = [];
   categoryDto: CategoryForm;
   categoryForm: FormGroup;
+  isAdmin: boolean = false;
 
   constructor(
     private categoryService: JewelCategoryService,
     private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {
     this.categoryDto = {
       name: '',
@@ -27,6 +30,7 @@ export class CategoriesListComponent implements OnInit {
       photo:  [null, Validators.required],
       description: [null],
       });
+    this.isAdmin = (this.authService.tokenPayload) ? this.authService.tokenPayload.isAdmin : false;
   }
 
   ngOnInit(): void {

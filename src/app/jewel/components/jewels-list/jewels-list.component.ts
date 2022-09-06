@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Jewel, JewelForm } from '../../jewel.interface';
 import { JewelService } from '../../jewel.service';
 
@@ -15,12 +16,14 @@ export class JewelsListComponent implements OnInit {
   jewels: Jewel[] = [];
   jewelDto: JewelForm;
   jewelForm: FormGroup;
+  isAdmin: boolean = false;
 
   constructor(
     private jewelService: JewelService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {
     this.jewelDto = {
       modelId: '',
@@ -36,6 +39,7 @@ export class JewelsListComponent implements OnInit {
       quantityInStock: [null, Validators.required],
       price: [null, Validators.required],
       });
+    this.isAdmin = (this.authService.tokenPayload) ? this.authService.tokenPayload.isAdmin : false;
   }
 
   ngOnInit(): void {

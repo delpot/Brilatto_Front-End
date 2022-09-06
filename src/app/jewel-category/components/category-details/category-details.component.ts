@@ -11,10 +11,11 @@ import { JewelCategoryService } from '../../jewel-category.service';
 export class CategoryDetailsComponent {
   @Input() category: JewelCategory = {} as JewelCategory;
   @Input() categories: JewelCategory[] = [];
+  @Input() isAdmin: boolean = false;
 
   constructor(
     private categoryService: JewelCategoryService,
-    private router: Router
+    private router: Router,
     ) {}
 
   deleteCategory(categoryId: string) {

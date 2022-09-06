@@ -11,6 +11,7 @@ import { JewelModelService } from '../../jewel-model.service';
 export class ModelDetailsComponent {
   @Input() model: JewelModel = {} as JewelModel;
   @Input() models: JewelModel[] = [];
+  @Input() isAdmin: boolean = false;
 
   constructor(
     private modelService: JewelModelService,

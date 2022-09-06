@@ -16,6 +16,7 @@ export class JewelDetailsComponent implements OnInit {
   addedJewels : Map<Jewel, number> = new Map<Jewel, number>();
   // maxQuantityReached: boolean = false;
   cartCounter: number = 0;
+  @Input() isAdmin: boolean = false;
 
   constructor(
     private cartService: CartService,

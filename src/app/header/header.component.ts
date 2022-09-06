@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { CartService } from '../cart/cart.service';
 import { Converter } from '../utils/converter.utils';
@@ -14,7 +15,8 @@ export class HeaderComponent  {
 
   constructor(
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {
     this.cartService.cartSubject.subscribe(
       data => {
@@ -32,5 +34,8 @@ export class HeaderComponent  {
     this.isLoggedIn = false;
     this.cartCounter = 0;
     Converter.clearCart();
+    this.router
+      .navigate(['/'])
+      .then(() => window.location.reload())
 }
 }

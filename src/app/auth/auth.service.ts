@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RegisterForm } from './models/register-form.interface';
 import { LoginForm } from './models/login-form.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +23,14 @@ export class AuthService {
         'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
     }),
   };
+  tokenPayload: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private jwtHelper: JwtHelperService 
+  ) {
+      this.tokenPayload = this.getTokenDecoded();
+  }
 
   login(loginForm: LoginForm): Observable<any> {
       return this.http.post<any>(
@@ -41,16 +48,29 @@ export class AuthService {
     );
   }
 
-  saveToken(token: string): void{
+  saveToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
-  isLoggedIn(): boolean{
+  isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     return token ? true : false;
   }
 
   clearToken(): void {
     localStorage.removeItem('token');
-}
+  }
+
+  getToken() {
+    return (localStorage.getItem('token'));
+ }
+
+  getTokenDecoded() {
+    const token = this.getToken();
+    if (token) {
+      return this.jwtHelper.decodeToken(token);
+    } else {
+      return null;
+    }
+  }
 }

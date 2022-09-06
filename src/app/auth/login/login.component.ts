@@ -73,7 +73,6 @@ export class LoginComponent {
   .login(this.loginDto)
   .subscribe({
     next: (res) => {
-      console.log(res);
       this.authService.saveToken(res.token);
       this.router
         .navigate(['/'])

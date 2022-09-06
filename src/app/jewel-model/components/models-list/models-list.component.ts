@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { JewelModel, ModelForm } from '../../jewel-model.interface';
 import { JewelModelService } from '../../jewel-model.service';
 
@@ -15,12 +16,14 @@ export class ModelsListComponent implements OnInit {
   models: JewelModel[] = [];
   modelDto: ModelForm;
   modelForm: FormGroup;
+  isAdmin: boolean = false;
 
   constructor(
     private modelService: JewelModelService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {
     this.modelDto = {
       categoryId: '',
@@ -33,7 +36,8 @@ export class ModelsListComponent implements OnInit {
       photo:  [null, Validators.required],
       description: [null],
       });
-  }
+    this.isAdmin = (this.authService.tokenPayload) ? this.authService.tokenPayload.isAdmin : false;
+    }
 
   ngOnInit(): void {
     const categoryId = this.route.snapshot.paramMap.get('categoryId');

@@ -12,6 +12,7 @@ import { JewelModelModule } from './jewel-model/jewel-model.module';
 import { JewelModule } from './jewel/jewel.module';
 import { CartModule } from './cart/cart.module';
 import { JwtInterceptor } from './auth/jwt.interceptor';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent],
@@ -27,6 +28,7 @@ import { JwtInterceptor } from './auth/jwt.interceptor';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService
   ],
   bootstrap: [AppComponent],
 })
