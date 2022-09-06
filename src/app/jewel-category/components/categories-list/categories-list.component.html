@@ -54,7 +54,7 @@
 
 <ul class="categories">
   <ng-container *ngFor="let category of categories">
-    <a [title]="category.name" [routerLink]="['/', category._id]">
+    <a [routerLink]="['/', category._id]">
       <app-category-details [category]="category" [categories]="categories" [isAdmin]="isAdmin"> </app-category-details>
     </a>
   </ng-container>

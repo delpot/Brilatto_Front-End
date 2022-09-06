@@ -1,33 +1,25 @@
 <li class="jewel">
-    <div class="label">
-      <p>{{ jewel.color | titlecase }}</p>
+
+  <div class="title">
+    {{ jewel.name | titlecase }}
+  </div>
+
+  <div class="photo-container">
+    <img class="photo" [src]="jewel.photo1" [alt]="jewel.description" />
+    <div class="photo-overlay">
+        <img [src]="jewel.photo2"[alt]="jewel.description">
     </div>
-    <div class="image">
-        <img [src]="jewel.photo" />
-    </div>
-    <div class="price">
-        <p>{{ jewel.price | currency:'EUR' }}</p>
-    </div>
-    <!-- <div class="quantity">
-        <button (click)="add(jewel)">
-            +
-        </button>
-        <span>{{jewel.quantity}}</span>
-        <button (click)="subtract(jewel)">
-            -
-        </button>
-        <p 
-            *ngIf="maxQuantityReached"
-            class="text-red-700 text-xs font-medium mb-2" 
-            >
-            Vous avez atteint la limite.
-        </p>
-    </div> -->
-    <button (click)="addToCart(jewel)">
+  </div>
+
+  <div class="price">
+    <p>{{ jewel.price | currency:'EUR' }}</p>
+  </div>
+
+    <button class="add-to-cart-button" (click)="addToCart(jewel)">
         Ajouter au panier
     </button>
 
-    <button *ngIf="isAdmin" (click)="deleteJewel(jewel._id)">
+    <button class="delete-button" *ngIf="isAdmin" (click)="deleteJewel(jewel._id)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="w-6 h-6 text-red-400"
@@ -43,4 +35,5 @@
           />
         </svg>
       </button>
+
 </li>

@@ -1,15 +1,19 @@
 export interface Jewel {
     _id: string;
-    color: string;
+    name: string;
     quantityInStock: number;
     price: number;
-    photo: string;
+    photo1: string;
+    photo2: string;
+    description: string;
   }
 
   export interface JewelForm {
     modelId: string;
-    color: string;
+    name: string;
     quantityInStock: number;
     price: number;
-    photo: string;
+    photo1: string;
+    photo2: string;
+    description: string;
   }

@@ -52,10 +52,10 @@ export class ModelsListComponent implements OnInit {
     this.modelService.getAllJewelModelsByCategoryId(this.categoryId).subscribe({
       next: (res) => {
         this.models = res;
-        // for (const model of this.models) {
-        //   const imagePath = `./assets/img/${model.image}`;
-        //   model.image = imagePath;
-        // }
+        for (const model of this.models) {
+          const imagePath = `./assets/photos/models/${model.photo}`;
+          model.photo = imagePath;
+        }
       },
       error: (err) => {
         console.log(`${err.statusText}: ${err.error}`);

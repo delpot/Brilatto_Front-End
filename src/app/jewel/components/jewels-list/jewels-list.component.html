@@ -11,27 +11,37 @@
         Nouveau bijou
       </label>
       <div class="flex flex-wrap -mx-3 mb-2">
-        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
           <input
-            id="color"
+            id="name"
             type="text"
-            placeholder="Couleur"
-            formControlName="color"
+            placeholder="Nom"
+            formControlName="name"
             class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
         </div>
     
-        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
           <input
-            id="photo"
+            id="photo1"
             type="text"
-            placeholder="Photo"
-            formControlName="photo"
+            placeholder="Photo n°1"
+            formControlName="photo1"
             class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
         </div>
 
-        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
+          <input
+            id="photo2"
+            type="text"
+            placeholder="Photo n°2"
+            formControlName="photo2"
+            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+        </div>
+
+        <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
           <input
             id="quantityInStock"
             type="number"
@@ -41,12 +51,22 @@
           />
         </div>
     
-        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
           <input
             id="price"
             type="number"
             placeholder="Prix à l'unité"
             formControlName="price"
+            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          />
+        </div>
+
+        <div class="w-full md:w-1/6 px-3 mb-6 md:mb-0">
+          <input
+            id="description"
+            type="text"
+            placeholder="Description"
+            formControlName="description"
             class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
         </div>
@@ -64,8 +84,8 @@
 
 <ul class="jewels">
     <ng-container *ngFor="let jewel of jewels">
-      <a [title]="jewel.color">
-        <app-jewel-details [jewel]="jewel" [jewels]="jewels"></app-jewel-details>
+      <a>
+        <app-jewel-details [jewel]="jewel" [jewels]="jewels" [isAdmin]="isAdmin"></app-jewel-details>
       </a>
     </ng-container>
 </ul>

@@ -1,14 +1,20 @@
 <li class="model">
-    <div class="label">
-      <p>{{ model.name | titlecase }}</p>
+
+    <div class="photo-container">
+      <img class="photo" [src]="model.photo" [alt]="model.description" />
+      <div class="photo-overlay photo-overlay-blur">
+        <div class="title">
+          {{ model.name | titlecase }}
+        </div>
+      </div>
     </div>
-    <!-- <div class="image">
-      <img [src]="category.image" [alt]="category.description" />
-    </div> -->
+
+  <div class="delete-button">
     <button *ngIf="isAdmin" (click)="deleteModel(model._id)">
+      <span>Supprimer</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="w-6 h-6 text-red-400"
+        class="w-5 h-5 text-red-400"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -21,4 +27,6 @@
         />
       </svg>
     </button>
+  </div>
+
 </li>

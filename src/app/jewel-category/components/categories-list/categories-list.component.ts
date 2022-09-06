@@ -38,7 +38,7 @@ export class CategoriesListComponent implements OnInit {
       next: (res) => {
         this.categories = res;
         for (const category of this.categories) {
-          const imagePath = `./assets/img/${category.photo}`;
+          const imagePath = `./assets/photos/categories/${category.photo}`;
           category.photo = imagePath;
         }
       },
