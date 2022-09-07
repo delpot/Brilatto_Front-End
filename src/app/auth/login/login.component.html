@@ -21,18 +21,6 @@
         formControlName="email"
         required
       />
-      <label 
-        *ngIf="missingEmail"
-        class="label-error" 
-        >
-        Merci de remplir ce champs.
-      </label>
-      <label 
-        *ngIf="invalidEmail"
-        class="label-error" 
-        >
-        Email invalide.
-      </label>
     </div>
 
     <div class="input-container">
@@ -49,30 +37,24 @@
         formControlName="password"
         required
       />
-      <label 
-        *ngIf="missingPassword"
-        class="label-error" 
-        >
-        Merci de remplir ce champs.
-      </label>
     </div>
 
     <label 
-      *ngIf="wrongPassword"
+      *ngIf="missingFields"
       class="label-error" 
       >
-      Mot de passe incorrect.
+      Merci de remplir tous les champs.
     </label>
 
     <label 
-      *ngIf="userNotFound"
+      *ngIf="wrongCredentials"
       class="label-error" 
       >
-      Identifiant inconnu.
+      Identifiants incorrects.
     </label>
 
     <label 
-      *ngIf="firebaseError"
+      *ngIf="authError"
       class="label-error" 
       >
       Erreur survenue.

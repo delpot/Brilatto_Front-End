@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RegisterForm } from '../models/register-form.interface';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -19,6 +18,10 @@ export class RegisterComponent {
   months: string[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
   days: string[] = this.getDaysInAMonth();
   countries: string[] = ['France', 'Monaco', 'Italie'];
+  missingFields: boolean = false;
+  existingUser: boolean = false;
+  passwordsNotMatching: boolean = false;
+  authError: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -30,14 +33,13 @@ export class RegisterComponent {
       lastname: '',
       email: '',
       password: '',
+      confirmPassword: '',
       dateOfBirth: new Date(),
-      address: {
-        addressLine1: '',
-        city: '',
-        postalCode: '',
-        country: '',
-        addressLine2: ''
-      }
+      addressLine1: '',
+      city: '',
+      postalCode: '',
+      country: '',
+      addressLine2: ''
     }
     this.registerForm = this.formBuilder.group({
       firstname: [null, Validators.required],
@@ -176,28 +178,23 @@ export class RegisterComponent {
     if (this.isLoading) return;
     this.isLoading = true;
 
+    this.missingFields = false;
+    this.existingUser = false;
+    this.passwordsNotMatching = false;
+    this.authError = false;
+
     this.registerDto.firstname = this.registerForm.controls['firstname'].value;
     this.registerDto.lastname = this.registerForm.controls['lastname'].value;
     this.registerDto.email = this.registerForm.controls['email'].value;
     this.registerDto.password = this.registerForm.controls['password'].value;
+    this.registerDto.confirmPassword = this.registerForm.controls['confirmPassword'].value;
     const monthNumber = this.months.indexOf(this.registerForm.controls['monthOfBirth'].value) + 1;
     this.registerDto.dateOfBirth = new Date(`${this.registerForm.controls['yearOfBirth'].value}-${monthNumber}-${this.registerForm.controls['dayOfBirth'].value}`);
-    this.registerDto.address.addressLine1 = this.registerForm.controls['addressLine1'].value;
-    this.registerDto.address.addressLine2 = this.registerForm.controls['addressLine2'].value;
-    this.registerDto.address.city = this.registerForm.controls['city'].value;
-    this.registerDto.address.postalCode = this.registerForm.controls['postalCode'].value;
-    this.registerDto.address.country = this.registerForm.controls['country'].value;
-
-    const auth = getAuth();
-
-    createUserWithEmailAndPassword(auth, this.registerDto.email, this.registerDto.password)
-      .then((userCredential) => {
-        console.log(`User registered in Firebase: ${userCredential.user.email}`);
-      })
-      .catch((error) => {
-        console.log(`Error code: ${error.code}. Error message: ${error.message}.`)
-      })
-      .finally(() => this.isLoading = false);
+    this.registerDto.addressLine1 = this.registerForm.controls['addressLine1'].value;
+    this.registerDto.addressLine2 = this.registerForm.controls['addressLine2'].value;
+    this.registerDto.city = this.registerForm.controls['city'].value;
+    this.registerDto.postalCode = this.registerForm.controls['postalCode'].value;
+    this.registerDto.country = this.registerForm.controls['country'].value;
 
     this.authService
     .register(this.registerDto)
@@ -208,7 +205,24 @@ export class RegisterComponent {
         this.router.navigate(['/login'])
       },
       error: (err) => {
-        console.log(`${err.statusText}: ${err.error}`);
+        switch (err.error.message) {
+          case '⚠ Missing fields!':
+            this.missingFields = true;
+            this.isLoading = false;
+            break;
+          case '⚠ User already exists!':
+            this.existingUser = true;
+            this.isLoading = false;
+            break;
+          case '⚠ Passwords don\'t match!':
+            this.passwordsNotMatching = true;
+            this.isLoading = false;
+            break;
+          default:
+            this.authError = true;
+            this.isLoading = false;
+        }
+        console.log(`${err.statusText}: ${err.error.message}`);
       }
     });
   }

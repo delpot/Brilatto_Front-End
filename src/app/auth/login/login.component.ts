@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { LoginForm } from '../models/login-form.interface';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,12 +13,9 @@ export class LoginComponent {
   loginDto: LoginForm;
   loginForm: FormGroup;
   isLoading: boolean = false;
-  missingEmail: boolean = false;
-  invalidEmail: boolean = false;
-  missingPassword: boolean = false;
-  userNotFound: boolean = false;
-  wrongPassword: boolean = false;
-  firebaseError: boolean = false;
+  missingFields: boolean = false;
+  wrongCredentials: boolean = false;
+  authError: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -40,57 +36,37 @@ export class LoginComponent {
     if (this.isLoading) return;
     this.isLoading = true;
 
-    this.missingEmail = false;
-    this.invalidEmail = false;
-    this.missingPassword = false;
-    this.userNotFound = false;
-    this.wrongPassword = false;
-    this.firebaseError = false;
+    this.missingFields = false;
+    this.wrongCredentials = false;
+    this.authError = false;
 
     this.loginDto = this.loginForm.value
 
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, this.loginDto.email, this.loginDto.password)
-      .then((userCredential) => {
-        console.log(`User logged in Firebase: ${userCredential.user.email}`);
-      })
-      .catch((error) => {
-        switch (error.code) {
-          case 'auth/missing-email':
-            this.missingEmail = true;
+    this.authService
+    .login(this.loginDto)
+    .subscribe({
+      next: (res) => {
+        if(!res.token) return;
+        this.authService.saveToken(res.token);
+        this.router
+          .navigate(['/'])
+          .then(() => window.location.reload());
+      },
+      error: (err) => {
+        switch (err.error.message) {
+          case '⚠ Missing fields!':
+            this.missingFields = true;
+            this.isLoading = false;
             break;
-          case 'auth/invalid-email':
-            this.invalidEmail = true;
-            break;
-          case 'auth/internal-error':
-            this.missingPassword = true;
-            break;
-          case 'auth/user-not-found':
-            this.userNotFound = true;
-            break;
-          case 'auth/wrong-password':
-            this.wrongPassword = true;
+          case '⚠ Wrong credentials!':
+            this.wrongCredentials = true;
+            this.isLoading = false;
             break;
           default:
-            this.firebaseError = true;
+            this.authError = true;
+            this.isLoading = false;
         }
-        console.log(`Error code: ${error.code}. Error message: ${error.message}.`)
-      })
-      .finally(() => this.isLoading = false);
-
-      
-  this.authService
-  .login(this.loginDto)
-  .subscribe({
-    next: (res) => {
-      if(!res.token) return;
-      this.authService.saveToken(res.token);
-      this.router
-        .navigate(['/'])
-        .then(() => window.location.reload());
-    },
-    error: (err) => {
-      console.log(`${err.statusText}: ${err.error.message}`);
-    }});
+        console.log(`${err.statusText}: ${err.error.message}`);
+      }});
   }
 }

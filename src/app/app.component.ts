@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { initializeApp } from 'firebase/app';
-import { firebaseConfig } from './firebase.config';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +8,5 @@ import { firebaseConfig } from './firebase.config';
 export class AppComponent implements OnInit {
   title = 'Brilatto_Front-End';
 
-  ngOnInit(): void {
-    initializeApp(firebaseConfig);
-  }
+  ngOnInit(): void {}
 }

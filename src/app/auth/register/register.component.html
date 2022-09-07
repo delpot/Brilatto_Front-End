@@ -20,7 +20,7 @@
         <input
           id="firstname"
           type="text"
-          placeholder="Prénom"
+          placeholder="Prénom*"
           formControlName="firstname"
         />
         <label 
@@ -41,7 +41,7 @@
         <input
           type="text"
           id="lastname"
-          placeholder="Nom"
+          placeholder="Nom*"
           formControlName="lastname"
         />
         <label 
@@ -63,7 +63,7 @@
       <input
         id="email"
         type="email"
-        placeholder="E-mail"
+        placeholder="E-mail*"
         formControlName="email"
       />
       <label 
@@ -92,7 +92,7 @@
           <input
             id="password"
             type="password"
-            placeholder="Mot de passe"
+            placeholder="Mot de passe*"
             formControlName="password"
           />
           <label 
@@ -116,7 +116,7 @@
           <input
             id="confirmPassword"
             type="password"
-            placeholder="Confirmez votre mot de passe"
+            placeholder="Confirmez votre mot de passe*"
             formControlName="confirmPassword"
           />
           <label 
@@ -214,7 +214,7 @@
           <input
             id="addressLine1"
             type="text"
-            placeholder="N° Rue"
+            placeholder="N° Rue*"
             formControlName="addressLine1"
           />
           <label 
@@ -240,7 +240,7 @@
           <input 
             id="postalCode" 
             type="text" 
-            placeholder="Code postal"
+            placeholder="Code postal*"
             formControlName="postalCode"
           >
           <label 
@@ -255,7 +255,7 @@
           <input 
             id="city" 
             type="text" 
-            placeholder="Ville"
+            placeholder="Ville*"
             formControlName="city"
             class="appearance-none block" 
           >
@@ -273,7 +273,7 @@
               id="country"
               formControlName="country"
             >
-              <option selected>Pays</option>
+              <option selected>Pays*</option>
               <option *ngFor="let country of countries">{{country}}</option>
             </select>
             <div class="svg-container">
@@ -283,6 +283,34 @@
         </div>
       </div>
     </div>
+
+    <label 
+      *ngIf="missingFields"
+      class="label-error" 
+      >
+      Merci de remplir tous les champs obligatoires.
+    </label>
+
+    <label 
+      *ngIf="existingUser"
+      class="label-error" 
+      >
+      Cet utilisateur existe déjà. Merci de vous connecter.
+    </label>
+
+    <label 
+      *ngIf="passwordsNotMatching"
+      class="label-error" 
+      >
+      Les mots de passe ne correspondent pas.
+    </label>
+
+    <label 
+      *ngIf="authError"
+      class="label-error" 
+      >
+      Aucun compte n'a pu être créé. 
+    </label>
 
     <div class="button">
       <button type="submit">
