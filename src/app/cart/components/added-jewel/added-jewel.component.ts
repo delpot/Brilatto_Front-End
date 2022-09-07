@@ -53,5 +53,6 @@ export class AddedJewelComponent implements OnInit {
     Converter.SetJewelMapToLocal(this.addedJewels)
     this.cartService.cartSubject.next(Converter.GetCartCounter(this.addedJewels));
     this.cartService.cartTotalSubject.next(Converter.GetTotalCart(this.addedJewels));
+    window.location.reload();
   }
 }
