@@ -1,4 +1,4 @@
-.full-screen-video-container {
+.register-container {
     position: relative;
     height: 100%;
     width: 100vw;
@@ -22,7 +22,7 @@ video {
 form {
     max-height: 100%;
     padding: 1rem; 
-    margin: 2rem;     
+    margin: 1rem 2rem;     
     background-color: #fff;
     border-radius: 0.5rem; 
     border-width: 1px; 

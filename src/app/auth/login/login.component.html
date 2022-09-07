@@ -1,28 +1,29 @@
-<div class="flex justify-center">
+<div class="login-container">
+
+  <video autoplay loop [muted]="true" plays-inline src="assets/videos/sea_foam.mp4" type="video/mp4"></video>
+
   <form
-  [formGroup]="loginForm"
-    (ngSubmit)="onSubmit()"
-    class="p-4 mt-20 rounded-lg border"
-  >
-    <h1 class="uppercase text-center text-xl font-medium">Se connecter à son compte</h1>
-    <div class="my-5 w-full">
+    [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+    <h1>Se connecter à son compte</h1>
+    <div class="input-container">
       <label 
           for="email"
-          class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2" 
+          class="label-title" 
           >
           E-mail
       </label>
       <input
         type="email"
         id="email"
-        class="p-2 rounded w-full border text-sm"
         placeholder="Email"
         formControlName="email"
         required
       />
       <label 
         *ngIf="missingEmail"
-        class="text-red-700 text-xs font-medium mb-2" 
+        class="label-error" 
         >
         Merci de remplir ce champs.
       </label>
@@ -34,24 +35,23 @@
       </label>
     </div>
 
-    <div class="my-5 w-full">
+    <div class="input-container">
       <label 
         for="password"
-        class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2" 
+        class="label-title" 
         >
         Mot de passe
       </label>
       <input
         type="password"
         id="password"
-        class="p-2 rounded w-full border text-sm"
         placeholder="Mot de passe"
         formControlName="password"
         required
       />
       <label 
         *ngIf="missingPassword"
-        class="text-red-700 text-xs font-medium mb-2" 
+        class="label-error" 
         >
         Merci de remplir ce champs.
       </label>
@@ -59,14 +59,14 @@
 
     <label 
       *ngIf="wrongPassword"
-      class="text-red-700 text-xs font-medium mb-2" 
+      class="label-error" 
       >
       Mot de passe incorrect.
     </label>
 
     <label 
       *ngIf="userNotFound"
-      class="text-red-700 text-xs font-medium mb-2" 
+      class="label-error" 
       >
       Identifiant inconnu.
     </label>
@@ -78,11 +78,8 @@
       Erreur survenue.
     </label>
 
-    <div class="my-5 w-full">
-      <button
-        type="submit"
-        class="p-2 w-full bg-blue-700 text-white hover:bg-blue-900 rounded"
-      >
+    <div class="button-container">
+      <button type="submit">
         <ng-container *ngIf="isLoading"> Chargement... </ng-container>
         <ng-container *ngIf="!isLoading"> Me connecter </ng-container>
       </button>
