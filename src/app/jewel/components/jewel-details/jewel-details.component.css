@@ -112,11 +112,15 @@ span {
   transition: 0.3s;
 }
 
-.add-to-cart-button:hover, .add-to-cart-button:focus, .add-to-cart-button:active {
+.add-to-cart-button:hover {
   background-color: #31DAFF; 
   text-shadow: 0 0 3px #555;
   text-decoration: underline;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* #31DAFF */
+.add-to-cart-button:active {
+  transform: scale(1.1);
+  box-shadow: 0 0 4px #111;
+  border: 2px solid #31DAFF;
+}
