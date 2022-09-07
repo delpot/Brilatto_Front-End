@@ -7,7 +7,7 @@
     <ul *ngIf="isLoggedIn">
       <!-- TODO: Add account controller in back-end 
         to get user information and to update if wanted -->
-      <li><a>Compte</a></li>
+      <li><a routerLink="/account">Compte</a></li>
       <li><a routerLink="/" (click)="logout()">Déconnexion</a></li>
     </ul>
   </div>

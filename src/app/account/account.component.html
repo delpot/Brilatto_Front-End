@@ -1,0 +1,152 @@
+<div class="flex-account">
+    <div class="account-container">
+
+        <h1>Mon compte</h1>
+
+        <form 
+            [formGroup]="userForm"
+            (ngSubmit)="onSubmit()"
+        >
+
+            <div class="name">
+                <div class="name-inputs">
+                    <label 
+                        for="firstname"
+                        class="label-title" 
+                    >
+                        Prénom
+                    </label>
+                    <input
+                        id="firstname"
+                        type="text"
+                        [placeholder]="updateAccountDto.firstname"
+                        formControlName="firstname"
+                    />
+                </div>
+            
+                <div class="name-inputs">
+                    <label 
+                        for="lastname"
+                        class="label-title" 
+                    >
+                        Nom
+                    </label>
+                    <input
+                        type="text"
+                        id="lastname"
+                        [placeholder]="updateAccountDto.lastname"
+                        formControlName="lastname"
+                    />
+                </div>
+            </div>
+    
+            <div class="email">
+            <label 
+                for="email"
+                class="label-title" 
+                >
+                E-mail
+            </label>
+            <input
+                id="email"
+                type="email"
+                [placeholder]="updateAccountDto.email"
+                formControlName="email"
+            />
+            </div>
+    
+            <div class="passwords">
+
+            </div>
+    
+            <div class="birth-date">
+            <label 
+                for="dateOfBirth"
+                class="label-title" 
+                >
+                Date de naissance
+            </label>
+                <input 
+                    id="dateOfBirth"
+                    type="text" 
+                    [placeholder]="updateAccountDto.dateOfBirth"
+                    onfocus="(this.type='date')"
+                    formControlName="dateOfBirth"
+                />
+            </div>
+    
+            <div class="address">
+                <label 
+                    for="address"
+                    class="label-title" 
+                    >
+                    Adresse
+                </label>
+                <div class="address-inputs">
+                    <div class="address-first-row-inputs">
+                        <input
+                            id="addressLine1"
+                            type="text"
+                            [placeholder]="updateAccountDto.addressLine1"
+                            formControlName="addressLine1"
+                        />
+                    </div>
+                
+                    <div class="address-first-row-inputs">
+                        <input
+                            id="addressLine2"
+                            type="text"
+                            [placeholder]="updateAccountDto.addressLine2"
+                            formControlName="addressLine2"
+                        />
+                    </div>
+                </div>
+            
+                <div class="address-inputs">
+                    <div class="address-second-row-inputs">
+                        <input 
+                            id="postalCode" 
+                            type="text" 
+                            [placeholder]="updateAccountDto.postalCode"
+                            formControlName="postalCode"
+                        >
+                    </div>
+            
+                    <div class="address-second-row-inputs">
+                        <input 
+                            id="city" 
+                            type="text" 
+                            [placeholder]="updateAccountDto.city"
+                            formControlName="city"
+                            class="appearance-none block" 
+                        >
+                    </div>
+            
+                    <div class="address-second-row-inputs">
+                        <div class="relative">
+                            <select 
+                                id="country"
+                                formControlName="country"
+                            >
+                                <option selected>{{updateAccountDto.country}}</option>
+                                <option *ngFor="let country of countries">{{country}}</option>
+                            </select>
+                            <div class="svg-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="button">
+          <button type="submit">
+            <ng-container> Enregistrer les modifications </ng-container>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  
+</div>

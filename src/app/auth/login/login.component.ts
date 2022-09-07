@@ -48,6 +48,7 @@ export class LoginComponent {
       next: (res) => {
         if(!res.token) return;
         this.authService.saveToken(res.token);
+        this.authService.saveUserId(res.loggedUser._id);
         this.router
           .navigate(['/'])
           .then(() => window.location.reload());

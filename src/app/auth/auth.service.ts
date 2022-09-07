@@ -52,6 +52,10 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
+  saveUserId(userId: string): void {
+    localStorage.setItem('userId', userId);
+  }
+
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     return token && token != "undefined" ? true : false;
@@ -64,6 +68,10 @@ export class AuthService {
   getToken() {
     return (localStorage.getItem('token'));
  }
+
+ clearUserId(): void {
+  localStorage.removeItem('userId');
+}
 
   getTokenDecoded() {
     const token = this.getToken();
