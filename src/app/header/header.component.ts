@@ -35,7 +35,7 @@ export class HeaderComponent  {
     this.cartCounter = 0;
     Converter.clearCart();
     this.router
-      .navigate(['/'])
+      .navigate(['/login'])
       .then(() => window.location.reload())
 }
 }
