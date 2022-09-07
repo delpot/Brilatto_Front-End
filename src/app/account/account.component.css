@@ -1,10 +1,10 @@
-/* .flex-account {
+.flex-account {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     line-height: 1.75rem; 
-    font-weight: 500; 
+    font-weight: 350; 
     letter-spacing: 0.05em; 
     text-align: center;
 }
@@ -12,7 +12,7 @@
 .account-container {
     padding: 2rem; 
     width: 70%; 
-} */
+}
 
 form {
     max-height: 100%;
