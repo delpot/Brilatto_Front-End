@@ -26,6 +26,12 @@
         >
         Merci de remplir ce champs.
       </label>
+      <label 
+        *ngIf="invalidEmail"
+        class="label-error" 
+        >
+        Email invalide.
+      </label>
     </div>
 
     <div class="my-5 w-full">
@@ -65,15 +71,12 @@
       Identifiant inconnu.
     </label>
 
-    <!-- <div
-      *ngIf="
-        (email.invalid && (email.dirty || email.touched)) ||
-        (password.invalid && (password.dirty || password.touched))
-      "
-      class="p-2 bg-red-300 text-red-800 rounded"
-    >
-      Veuillez remplir tous les champs.
-    </div> -->
+    <label 
+      *ngIf="firebaseError"
+      class="label-error" 
+      >
+      Erreur survenue.
+    </label>
 
     <div class="my-5 w-full">
       <button

@@ -54,7 +54,7 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
-    return token ? true : false;
+    return token && token != "undefined" ? true : false;
   }
 
   clearToken(): void {
@@ -67,7 +67,7 @@ export class AuthService {
 
   getTokenDecoded() {
     const token = this.getToken();
-    if (token) {
+    if (token && token != "undefined") {
       return this.jwtHelper.decodeToken(token);
     } else {
       return null;

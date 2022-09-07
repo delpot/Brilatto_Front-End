@@ -15,9 +15,11 @@ export class LoginComponent {
   loginForm: FormGroup;
   isLoading: boolean = false;
   missingEmail: boolean = false;
+  invalidEmail: boolean = false;
   missingPassword: boolean = false;
   userNotFound: boolean = false;
   wrongPassword: boolean = false;
+  firebaseError: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -38,13 +40,16 @@ export class LoginComponent {
     if (this.isLoading) return;
     this.isLoading = true;
 
-    this.wrongPassword = false;
+    this.missingEmail = false;
+    this.invalidEmail = false;
+    this.missingPassword = false;
     this.userNotFound = false;
+    this.wrongPassword = false;
+    this.firebaseError = false;
 
     this.loginDto = this.loginForm.value
 
     const auth = getAuth();
-    
     signInWithEmailAndPassword(auth, this.loginDto.email, this.loginDto.password)
       .then((userCredential) => {
         console.log(`User logged in Firebase: ${userCredential.user.email}`);
@@ -53,6 +58,9 @@ export class LoginComponent {
         switch (error.code) {
           case 'auth/missing-email':
             this.missingEmail = true;
+            break;
+          case 'auth/invalid-email':
+            this.invalidEmail = true;
             break;
           case 'auth/internal-error':
             this.missingPassword = true;
@@ -63,6 +71,8 @@ export class LoginComponent {
           case 'auth/wrong-password':
             this.wrongPassword = true;
             break;
+          default:
+            this.firebaseError = true;
         }
         console.log(`Error code: ${error.code}. Error message: ${error.message}.`)
       })
@@ -73,13 +83,14 @@ export class LoginComponent {
   .login(this.loginDto)
   .subscribe({
     next: (res) => {
+      if(!res.token) return;
       this.authService.saveToken(res.token);
       this.router
         .navigate(['/'])
         .then(() => window.location.reload());
     },
     error: (err) => {
-      console.log(`${err.statusText}: ${err.error}`);
+      console.log(`${err.statusText}: ${err.error.message}`);
     }});
   }
 }
