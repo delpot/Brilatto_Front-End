@@ -1,66 +1,71 @@
-<tr class="added-jewel">
-  <td>
-    <div class="cart-column jewel-reference">
+<li class="added-jewel">
+
+    <div class="column">
       <img
         [src]="jewel.photo1"
         alt="image"
       />
     </div>
-  </td>
-  <td class="cart-column jewel-reference">
+
+  <div class="column">
       <h3>{{jewel.name}}</h3>
-  </td>
-  <td class="cart-column">{{ jewel.price}}€</td>
-  <td class="cart-column">
-      <button (click)="updateQuantity(false)">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="inline-flex w-6 h-6 text-blue-600"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </button>
+  </div>
 
-      <span>{{quantity}}</span>
+  <div class="column">{{ jewel.price}}€</div>
 
-      <button (click)="updateQuantity(true)">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="inline-flex w-6 h-6 text-blue-600"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </button>
+  <div class="column quantity">
 
-      <p 
+    <button class="quantity-button" (click)="updateQuantity(false)">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    </button>
+
+    <div>{{quantity}}</div>
+
+    <button class="quantity-button" (click)="updateQuantity(true)">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    </button>
+
+    <p 
       *ngIf="maxQuantityReached"
       class="text-red-700 text-xs font-medium mb-2" 
       >
       Vous avez atteint la limite.
-  </p>
-  </td>
-  <td class="cart-column">{{ jewel.price * quantity }}€</td>
-  <td class="cart-column">
-    <button (click)="removeJewelFromCart(jewel)">
+    </p>
+
+  </div>
+
+  <div class="column">{{ jewel.price * quantity }}€</div>
+
+  <div class="column">
+    <button class="remove-button" (click)="removeJewelFromCart(jewel)">
+      <span>Supprimer</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="w-6 h-6 text-red-400"
+        class="w-5 h-5 text-red-400"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -73,5 +78,5 @@
         />
       </svg>
     </button>
-  </td>
-</tr>
+  </div>
+</li>

@@ -1,26 +1,28 @@
-<div *ngIf="addedJewels.size === 0" class="empty-cart">
+<div class="flex-cart">
+
+  <div *ngIf="addedJewels.size === 0" class="empty-cart">
     <h3>Votre panier est vide.</h3>
-</div>
+  </div>
 
-<div *ngIf="addedJewels.size  > 0" class="cart-container">
+  <div *ngIf="addedJewels.size  > 0" class="cart-container">
 
-  <h3>Mon panier</h3>
+    <h3>Mon panier</h3>
 
-  <table>
-    <tbody>
+    <ul>
       <ng-container *ngFor="let jewel of listJewel">
         <app-added-jewel [jewel]="jewel" [addedJewels]="addedJewels"></app-added-jewel>
       </ng-container>
-    </tbody>
-  </table>
+    </ul>
 
-  <div class="cart-total">
-    <p class="total-title">Total</p>
-    <p class="total-amount">{{ cartTotal }}€</p>
+    <div class="cart-total">
+      <p class="total-title">Total</p>
+      <p class="total-amount">{{ cartTotal }}€</p>
+    </div>
+
+    <button class="cart-validation-button">
+      Valider le panier
+    </button>
+
   </div>
-
-  <button class="cart-validation-button">
-    Valider le panier
-  </button>
 
 </div>
