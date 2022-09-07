@@ -3,7 +3,7 @@
     [formGroup]="jewelForm"
     (ngSubmit)="onSubmit()"
     >
-      <label>
+      <label class="label-title">
         Nouveau bijou
       </label>
 
@@ -64,6 +64,13 @@
         </div>
 
       </div>
+
+      <label 
+        *ngIf="missingFields"
+        class="label-error" 
+        >
+        Merci de remplir tous les champs.
+      </label>
   
     <button type="submit">
       <ng-container> Ajouter un bijou </ng-container>

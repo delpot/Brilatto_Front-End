@@ -17,6 +17,7 @@ export class JewelsListComponent implements OnInit {
   jewelDto: JewelForm;
   jewelForm: FormGroup;
   isAdmin: boolean = false;
+  missingFields: boolean = false;
 
   constructor(
     private jewelService: JewelService,
@@ -81,6 +82,8 @@ export class JewelsListComponent implements OnInit {
     this.jewelDto.price = this.jewelForm.controls['price'].value;
     this.jewelDto.description = this.jewelForm.controls['description'].value;
 
+    this.missingFields = false;
+
     this.jewelService
     .addOneJewel(this.jewelDto)
     .subscribe({
@@ -92,7 +95,9 @@ export class JewelsListComponent implements OnInit {
         .then(() => window.location.reload());
       },
       error: (err) => {
-        console.log(err)
+        if (err.error.message === '⚠ Missing fields!') {
+          this.missingFields = true;
+        }
         console.log(`${err.statusText}: ${err.error}`);
       }
     });

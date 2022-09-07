@@ -5,7 +5,7 @@
     >
     <div>
       
-      <label>
+      <label class="label-title">
         Nouvelle catégorie
       </label>
 
@@ -39,6 +39,14 @@
         </div>
 
       </div>
+
+      <label 
+        *ngIf="missingFields"
+        class="label-error" 
+        >
+        Merci de remplir tous les champs.
+      </label>
+
     </div>
   
     <button type="submit">

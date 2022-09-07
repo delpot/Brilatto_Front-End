@@ -14,6 +14,7 @@ export class CategoriesListComponent implements OnInit {
   categoryDto: CategoryForm;
   categoryForm: FormGroup;
   isAdmin: boolean = false;
+  missingFields: boolean = false;
 
   constructor(
     private categoryService: JewelCategoryService,
@@ -53,6 +54,8 @@ export class CategoriesListComponent implements OnInit {
     this.categoryDto.photo = this.categoryForm.controls['photo'].value;
     this.categoryDto.description = this.categoryForm.controls['description'].value;
 
+    this.missingFields = false;
+    
     this.categoryService
     .addOneCategory(this.categoryDto)
     .subscribe({
@@ -62,8 +65,10 @@ export class CategoriesListComponent implements OnInit {
         window.location.reload()
       },
       error: (err) => {
-        console.log(err)
-        console.log(`${err.statusText}: ${err.error}`);
+        if (err.error.message === '⚠ Missing fields!') {
+          this.missingFields = true;
+        }
+        console.log(`${err.statusText}: ${err.error.message}`);
       }
     });
   }

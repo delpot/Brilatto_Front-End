@@ -17,6 +17,7 @@ export class ModelsListComponent implements OnInit {
   modelDto: ModelForm;
   modelForm: FormGroup;
   isAdmin: boolean = false;
+  missingFields: boolean = false;
 
   constructor(
     private modelService: JewelModelService,
@@ -69,6 +70,8 @@ export class ModelsListComponent implements OnInit {
     this.modelDto.photo = this.modelForm.controls['photo'].value;
     this.modelDto.description = this.modelForm.controls['description'].value;
 
+    this.missingFields = false;
+    
     this.modelService
     .addOneModel(this.modelDto)
     .subscribe({
@@ -80,7 +83,9 @@ export class ModelsListComponent implements OnInit {
         .then(() => window.location.reload());
       },
       error: (err) => {
-        console.log(err)
+        if (err.error.message === '⚠ Missing fields!') {
+          this.missingFields = true;
+        }
         console.log(`${err.statusText}: ${err.error}`);
       }
     });
