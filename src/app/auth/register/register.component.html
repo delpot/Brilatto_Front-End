@@ -1,18 +1,19 @@
-<div class="flex justify-center">
+<div class="full-screen-video-container">
+
+  <video autoplay loop [muted]="true" plays-inline src="assets/videos/sea_foam.mp4" type="video/mp4"></video>
 
   <form 
     [formGroup]="registerForm"
     (ngSubmit)="onSubmit()"
-    class="p-4 mt-20 rounded-lg border"
   >
 
-    <h1 class="uppercase text-center text-xl font-medium">Créer un compte</h1>
+    <h1>Créer un compte</h1>
 
-    <div class=" my-5 flex flex-wrap -mx-3 mb-2">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <div class="name">
+      <div class="name-inputs">
         <label 
           for="firstname"
-          class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2" 
+          class="label-title" 
           >
           Prénom
         </label>
@@ -21,20 +22,19 @@
           type="text"
           placeholder="Prénom"
           formControlName="firstname"
-          class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         />
         <label 
-        *ngIf="shouldDisplayRequiredError(registerForm.get('firstname'))"
-        class="text-red-700 text-xs font-medium mb-2" 
-        >
-        Merci de remplir ce champs.
-      </label>
+          *ngIf="shouldDisplayRequiredError(registerForm.get('firstname'))"
+          class="label-error" 
+          >
+          Merci de remplir ce champs.
+        </label>
       </div>
   
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <div class="name-inputs">
         <label 
           for="lastname"
-          class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2" 
+          class="label-title" 
           >
           Nom
         </label>
@@ -43,21 +43,20 @@
           id="lastname"
           placeholder="Nom"
           formControlName="lastname"
-          class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         />
         <label 
-        *ngIf="shouldDisplayRequiredError(registerForm.get('lastname'))"
-        class="text-red-700 text-xs font-medium mb-2" 
-        >
-        Merci de remplir ce champs.
-      </label>
+          *ngIf="shouldDisplayRequiredError(registerForm.get('lastname'))"
+          class="label-error" 
+          >
+          Merci de remplir ce champs.
+        </label>
       </div>
     </div>
 
-    <div class="my-5 w-full">
+    <div class="email">
       <label 
         for="email"
-        class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2" 
+        class="label-title" 
         >
         E-mail
       </label>
@@ -66,141 +65,135 @@
         type="email"
         placeholder="E-mail"
         formControlName="email"
-        class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
       />
       <label 
-      *ngIf="shouldDisplayRequiredError(registerForm.get('email'))"
-      class="text-red-700 text-xs font-medium mb-2" 
-      >
-      Merci de remplir ce champs.
-    </label>
-    <label 
-    *ngIf="shouldDisplayEmailError(registerForm.get('email'))"
-    class="text-red-700 text-xs font-medium mb-2" 
-    >
-    Email non valide.
-  </label>
+        *ngIf="shouldDisplayRequiredError(registerForm.get('email'))"
+        class="label-error" 
+        >
+        Merci de remplir ce champs.
+      </label>
+      <label 
+        *ngIf="shouldDisplayEmailError(registerForm.get('email'))"
+        class="label-error" 
+        >
+        Email non valide.
+      </label>
     </div>
 
-    <div class="my-5">
+    <div class="passwords">
       <label 
         for="password"
-        class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2"
+        class="label-title"
       >
         Mot de passe
       </label>
-      <div class="flex flex-wrap -mx-3 mb-2">
-        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <div class="passwords-inputs-container">
+        <div class="passwords-inputs">
           <input
             id="password"
             type="password"
             placeholder="Mot de passe"
             formControlName="password"
-            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
           <label 
-          *ngIf="shouldDisplayRequiredError(registerForm.get('password'))"
-          class="text-red-700 text-xs font-medium mb-2" 
-          >
-          Merci de remplir ce champs.
-        </label>
-        <label 
-        *ngIf="shouldDisplayPatternError(registerForm.get('password'))"
-        class="text-red-700 text-xs font-medium mb-2" 
-        >
-        Le mot de passe doit contenir: <br>
-        - Entre 7 et 15 caractères <br>
-        - Au moins un chiffre (0-9) <br>
-        - Au moins un caractère spécial (!@#$%^&*)
-      </label>
+            *ngIf="shouldDisplayRequiredError(registerForm.get('password'))"
+            class="label-error" 
+            >
+            Merci de remplir ce champs.
+          </label>
+          <label 
+            *ngIf="shouldDisplayPatternError(registerForm.get('password'))"
+            class="label-error" 
+            >
+            Le mot de passe doit contenir: <br>
+            - Entre 7 et 15 caractères <br>
+            - Au moins un chiffre (0-9) <br>
+            - Au moins un caractère spécial (!@#$%^&*)
+          </label>
         </div>
     
-        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div class="passwords-inputs">
           <input
             id="confirmPassword"
             type="password"
             placeholder="Confirmez votre mot de passe"
             formControlName="confirmPassword"
-            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
           <label 
-          *ngIf="shouldDisplayRequiredError(registerForm.get('confirmPassword'))"
-          class="text-red-700 text-xs font-medium mb-2" 
-          >
-          Merci de remplir ce champs.
-        </label>
+            *ngIf="shouldDisplayRequiredError(registerForm.get('confirmPassword'))"
+            class="label-error" 
+            >
+            Merci de remplir ce champs.
+          </label>
         </div>
       </div>
       <label 
-      *ngIf="shouldDisplayPasswordsNotMatchingError(registerForm.get('confirmPassword'))"
-      class="text-red-700 text-xs font-medium mb-2" 
-      >
-      Les mots de passe ne correspondent pas.
-    </label>
+        *ngIf="shouldDisplayPasswordsNotMatchingError(registerForm.get('confirmPassword'))"
+        class="label-error" 
+        >
+        Les mots de passe ne correspondent pas.
+      </label>
     </div>
 
-    <div class="my-5">
+    <div class="birth-date">
       <label 
         for="dateOfBirth"
-        class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2" 
+        class="label-title" 
         >
         Date de naissance
       </label>
 
-      <div class="flex flex-wrap -mx-3 mb-2">
+      <div class="birth-date-inputs-container">
 
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div class="birth-date-inputs">
           <div class="relative">
             <select 
               id="dayOfBirth" 
               formControlName="dayOfBirth"
-              class="block appearance-none w-full border text-sm text-gray-700 p-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
             >
               <option selected>Jour</option>
               <option 
               *ngFor="let day of days"
               >{{day}}</option>
             </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            <div class="svg-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </div>
           </div>
         </div>
 
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div class="birth-date-inputs">
           <div class="relative">
             <select 
               id="monthOfBirth"
               formControlName="monthOfBirth"
               (change)='onSelectMonth($event)'
-              class="block appearance-none w-full border text-sm text-gray-700 p-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
             >
               <option selected>Mois</option>
               <option 
               *ngFor="let month of months"
               >{{month}}</option>
             </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            <div class="svg-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </div>
           </div>
         </div>
 
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div class="birth-date-inputs">
           <div class="relative">
             <select 
               id="yearOfBirth"
               formControlName="yearOfBirth"
               (change)='onSelectYear($event)'
-              class="block appearance-none w-full border text-sm text-gray-700 p-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
             >
               <option selected>Année</option>
               <option 
               *ngFor="let year of years"
               >{{year}}</option>
             </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            <div class="svg-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </div>
           </div>
         </div>
@@ -209,97 +202,90 @@
 
     </div>
 
-    <div class="my-5">
+    <div class="address">
       <label 
         for="address"
-        class="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-2" 
+        class="label-title" 
         >
         Adresse
       </label>
-      <div class="flex flex-wrap -mx-3 mb-2">
-        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <div class="address-inputs">
+        <div class="address-first-row-inputs">
           <input
             id="addressLine1"
             type="text"
             placeholder="N° Rue"
             formControlName="addressLine1"
-            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
           <label 
           *ngIf="shouldDisplayRequiredError(registerForm.get('addressLine1'))"
-          class="text-red-700 text-xs font-medium mb-2" 
+          class="label-error" 
           >
           Merci de remplir ce champs.
         </label>
         </div>
     
-        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div class="address-first-row-inputs">
           <input
             id="addressLine2"
             type="text"
             placeholder="Complément d'adresse"
             formControlName="addressLine2"
-            class="p-2 rounded w-full border text-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
         </div>
       </div>
 
-      <div class="flex flex-wrap -mx-3 mb-2">
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <div class="address-inputs">
+        <div class="address-second-row-inputs">
           <input 
             id="postalCode" 
             type="text" 
             placeholder="Code postal"
             formControlName="postalCode"
-            class="appearance-none block w-full text-sm text-gray-700 border rounded p-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
           >
           <label 
             *ngIf="shouldDisplayRequiredError(registerForm.get('postalCode'))"
-            class="text-red-700 text-xs font-medium mb-2" 
+            class="label-error" 
             >
             Merci de remplir ce champs.
           </label>
         </div>
 
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div class="address-second-row-inputs">
           <input 
             id="city" 
             type="text" 
             placeholder="Ville"
             formControlName="city"
-            class="appearance-none block w-full text-sm text-gray-700 border p-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+            class="appearance-none block" 
           >
           <label 
           *ngIf="shouldDisplayRequiredError(registerForm.get('city'))"
-          class="text-red-700 text-xs font-medium mb-2" 
+          class="label-error" 
           >
           Merci de remplir ce champs.
         </label>
         </div>
 
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div class="address-second-row-inputs">
           <div class="relative">
             <select 
               id="country"
               formControlName="country"
-              class="block appearance-none w-full border text-sm text-gray-700 p-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
             >
               <option selected>Pays</option>
               <option *ngFor="let country of countries">{{country}}</option>
             </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            <div class="svg-container">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="my-5 w-full">
-      <button
-        type="submit"
-        class="p-2 w-full bg-blue-700 text-white hover:bg-blue-900 rounded"
-      >
+    <div class="button">
+      <button type="submit">
         <ng-container *ngIf="isLoading"> Chargement... </ng-container>
         <ng-container *ngIf="!isLoading"> M'inscrire </ng-container>
       </button>
