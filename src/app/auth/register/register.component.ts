@@ -18,6 +18,8 @@ export class RegisterComponent {
   months: string[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
   days: string[] = this.getDaysInAMonth();
   countries: string[] = ['France', 'Monaco', 'Italie'];
+  invalidEmail: boolean = false;
+  invalidPassword: boolean = false;
   missingFields: boolean = false;
   existingUser: boolean = false;
   passwordsNotMatching: boolean = false;
@@ -178,6 +180,8 @@ export class RegisterComponent {
     if (this.isLoading) return;
     this.isLoading = true;
 
+    this.invalidEmail = false;
+    this.invalidPassword = false;
     this.missingFields = false;
     this.existingUser = false;
     this.passwordsNotMatching = false;
@@ -206,6 +210,14 @@ export class RegisterComponent {
       },
       error: (err) => {
         switch (err.error.message) {
+          case '⚠ Invalid email!':
+            this.invalidEmail = true;
+            this.isLoading = false;
+            break;
+          case '⚠ Invalid password!':
+            this.invalidPassword = true;
+            this.isLoading = false;
+            break;
           case '⚠ Missing fields!':
             this.missingFields = true;
             this.isLoading = false;

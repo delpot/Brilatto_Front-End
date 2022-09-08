@@ -285,6 +285,13 @@
     </div>
 
     <label 
+      *ngIf="invalidEmail"
+      class="label-error" 
+      >
+      Email invalide.
+  </label>
+
+    <label 
       *ngIf="missingFields"
       class="label-error" 
       >
