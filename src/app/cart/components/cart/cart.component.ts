@@ -37,7 +37,10 @@ export class CartComponent implements OnInit {
 
   validCart() {
     if (this.authService.isLoggedIn()) {
-      return null;
+      const userId = this.authService.getUserId();
+      console.log(userId);
+      if (!userId) return;
+      return this.cartService.createCart(userId, this.addedJewels);
     } else {
       return this.router.navigate(['/login']);
     }

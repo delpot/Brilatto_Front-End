@@ -28,8 +28,8 @@ export class Converter {
 
   static GetTotalCart(jewelMap: Map<Jewel, number>): number {
     let totalpanier = 0;
-    jewelMap.forEach(function (qte, jewel) {
-      totalpanier += qte * jewel.price;
+    jewelMap.forEach(function (quantity, jewel) {
+      totalpanier += quantity * jewel.price;
     });
 
     return totalpanier;

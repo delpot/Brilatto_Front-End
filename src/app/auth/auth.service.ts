@@ -66,6 +66,10 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getUserId() {
+    return localStorage.getItem('userId');
+  }
+
   clearUserId(): void {
     localStorage.removeItem('userId');
   }
