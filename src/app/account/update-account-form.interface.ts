@@ -10,3 +10,8 @@ export interface UpdateAccountForm {
     addressLine2?: string;
     dateOfBirth?: Date;
 }
+
+export interface UpdatePasswordForm {
+    oldPassword: string;
+    newPassword:string;
+}

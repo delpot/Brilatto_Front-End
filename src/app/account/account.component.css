@@ -19,8 +19,9 @@ form {
     padding: 1rem; 
     margin: 1rem 2rem;     
     background-color: #fff;
-    border-radius: 0.5rem; 
-    border-width: 1px; 
+    border-radius: 0.375rem; 
+    border-top-width: 2px; 
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); 
 }
 
 h1 {
@@ -46,12 +47,7 @@ h1 {
     width: 100%;      
 }
 
-.button {
-    margin-top: 1.25rem;
-    width: 100%;  
-}  
-
-.passwords, .birth-date, .address {
+.birth-date, .address {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
 }
@@ -78,14 +74,14 @@ h1 {
     flex-wrap: wrap; 
 }
 
-.passwords-inputs, .address-first-row-inputs {
+.address-first-row-inputs {
     padding-left: 0.75rem;
     padding-right: 0.75rem; 
     width: 100%; 
 }
 
 @media (min-width: 768px) { 
-    .passwords-inputs, .address-first-row-inputs {
+    .address-first-row-inputs {
         width: 50%; 
     }
 }
@@ -98,14 +94,14 @@ h1 {
     flex-wrap: wrap; 
 }
 
-.birth-date-inputs, .address-second-row-inputs {
+.birth-date-inputs, .address-second-row-inputs, .passwords-inputs {
     padding-left: 0.75rem;
     padding-right: 0.75rem; 
     width: 100%; 
 }
 
 @media (min-width: 768px) { 
-    .birth-date-inputs, .address-second-row-inputs {
+    .birth-date-inputs, .address-second-row-inputs, .passwords-inputs {
         width: 33.333333%;  
     } 
    }

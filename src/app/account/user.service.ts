@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { UpdateAccountForm } from "./update-account-form.interface";
+import { UpdateAccountForm, UpdatePasswordForm } from "./update-account-form.interface";
 
 @Injectable({
     providedIn: 'root',
@@ -36,6 +36,14 @@ import { UpdateAccountForm } from "./update-account-form.interface";
         updateUserDto,
         this.httpOptions
       );
-  }
+    }
+
+    updateUserPassword(userId: string, updatePasswordDto: UpdatePasswordForm): Observable<any> {
+      return this.http.put<any>(
+        environment.baseUrl + this.USER_URL + userId + '/password',
+        updatePasswordDto,
+        this.httpOptions
+      );
+    }
 }
   
