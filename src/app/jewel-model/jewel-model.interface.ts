@@ -1,16 +1,16 @@
-import { Jewel } from "src/app/jewel/jewel.interface";
+import { Jewel } from 'src/app/jewel/jewel.interface';
 
 export interface JewelModel {
-    _id: string;
-    name: string;
-    description: string;
-    photo: string;
-    jewels?: Jewel[];
-  }
+  _id: string;
+  name: string;
+  description: string;
+  photo: string;
+  jewels?: Jewel[];
+}
 
-  export interface ModelForm {
-    categoryId: string;
-    name: string;
-    description: string;
-    photo: string;
-  }
+export interface ModelForm {
+  categoryId: string;
+  name: string;
+  description: string;
+  photo: string;
+}

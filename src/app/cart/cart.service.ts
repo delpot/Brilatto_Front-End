@@ -5,10 +5,8 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-
-    cartSubject = new Subject<any>()
-    cartTotalSubject = new Subject<any>()
+  cartSubject = new Subject<any>();
+  cartTotalSubject = new Subject<any>();
 
   constructor() {}
-  
 }

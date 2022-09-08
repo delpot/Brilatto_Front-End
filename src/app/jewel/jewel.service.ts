@@ -18,7 +18,7 @@ export class JewelService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
       'Access-Control-Allow-Headers':
         'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
-    })
+    }),
   };
 
   constructor(private http: HttpClient) {}
@@ -28,21 +28,21 @@ export class JewelService {
       environment.baseUrl + this.JEWELS_URL + 'model/' + modelId,
       this.httpOptions
     );
-}
+  }
 
-addOneJewel(jewelDto: JewelForm) {
-  console.log(jewelDto);
-  return this.http.post<any>(
-    environment.baseUrl + this.JEWELS_URL + 'add',
-    jewelDto,
-    this.httpOptions
-  )
-}
+  addOneJewel(jewelDto: JewelForm) {
+    console.log(jewelDto);
+    return this.http.post<any>(
+      environment.baseUrl + this.JEWELS_URL + 'add',
+      jewelDto,
+      this.httpOptions
+    );
+  }
 
-deleteOneJewel(jewelId: string): Observable<any> {
-  return this.http.put<any>(
-    environment.baseUrl + this.JEWELS_URL + jewelId + '/softDelete',
-    this.httpOptions
-  )
-}
+  deleteOneJewel(jewelId: string): Observable<any> {
+    return this.http.put<any>(
+      environment.baseUrl + this.JEWELS_URL + jewelId + '/softDelete',
+      this.httpOptions
+    );
+  }
 }

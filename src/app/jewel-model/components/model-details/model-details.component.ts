@@ -6,7 +6,7 @@ import { JewelModelService } from '../../jewel-model.service';
 @Component({
   selector: 'app-model-details',
   templateUrl: './model-details.component.html',
-  styleUrls: ['./model-details.component.css']
+  styleUrls: ['./model-details.component.css'],
 })
 export class ModelDetailsComponent {
   @Input() model: JewelModel = {} as JewelModel;
@@ -16,23 +16,24 @@ export class ModelDetailsComponent {
   constructor(
     private modelService: JewelModelService,
     private router: Router,
-    private route: ActivatedRoute,
-  ) { }
+    private route: ActivatedRoute
+  ) {}
 
   deleteModel(modelId: string) {
     this.modelService.deleteOneModel(modelId).subscribe({
       next: (res) => {
-        const newModelList = this.models.filter((model) => model._id !== res._id);
+        const newModelList = this.models.filter(
+          (model) => model._id !== res._id
+        );
         this.models = newModelList;
         const categoryId = this.route.snapshot.paramMap.get('categoryId');
         this.router
-        .navigate(['/' + categoryId])
-        .then(() => window.location.reload());
+          .navigate(['/' + categoryId])
+          .then(() => window.location.reload());
       },
       error: (err) => {
         console.log(`${err.statusText}: ${err.error}`);
-      }
+      },
     });
   }
-
 }

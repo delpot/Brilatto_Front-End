@@ -1,4 +1,4 @@
-import { JewelModel } from "../jewel-model/jewel-model.interface";
+import { JewelModel } from '../jewel-model/jewel-model.interface';
 
 export interface JewelCategory {
   _id: string;

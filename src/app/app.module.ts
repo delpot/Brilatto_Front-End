@@ -27,11 +27,12 @@ import { UserModule } from './account/user.module';
     JewelModelModule,
     JewelModule,
     CartModule,
-    UserModule
+    UserModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
   ],
   bootstrap: [AppComponent],
 })

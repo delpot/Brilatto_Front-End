@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { RegisterForm } from '../models/register-form.interface';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
@@ -15,7 +21,20 @@ export class RegisterComponent {
   selectedYear!: string;
   selectedMonth!: string;
   years: string[] = this.getYearsOfBirth();
-  months: string[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+  months: string[] = [
+    'Janvier',
+    'Février',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre',
+  ];
   days: string[] = this.getDaysInAMonth();
   countries: string[] = ['France', 'Monaco', 'Italie'];
   invalidEmail: boolean = false;
@@ -41,26 +60,39 @@ export class RegisterComponent {
       city: '',
       postalCode: '',
       country: '',
-      addressLine2: ''
-    }
-    this.registerForm = this.formBuilder.group({
-      firstname: [null, Validators.required],
-      lastname:  [null, Validators.required],
-      email: [null, [Validators.required, Validators.email, Validators.minLength(6)]],
-      password: [null, [Validators.required, Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/)]],
-      confirmPassword: [null, Validators.required],
-      dayOfBirth: [null, Validators.required],
-      monthOfBirth: [null, Validators.required],
-      yearOfBirth: [null, Validators.required],
-      addressLine1: [null, Validators.required],
-      city: [null, Validators.required],
-      postalCode: [null, Validators.required],
-      country: [null, Validators.required],
-      addressLine2: [null],
-      },  
+      addressLine2: '',
+    };
+    this.registerForm = this.formBuilder.group(
       {
-        validators: this.passwordsMatch
-      });
+        firstname: [null, Validators.required],
+        lastname: [null, Validators.required],
+        email: [
+          null,
+          [Validators.required, Validators.email, Validators.minLength(6)],
+        ],
+        password: [
+          null,
+          [
+            Validators.required,
+            Validators.pattern(
+              /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/
+            ),
+          ],
+        ],
+        confirmPassword: [null, Validators.required],
+        dayOfBirth: [null, Validators.required],
+        monthOfBirth: [null, Validators.required],
+        yearOfBirth: [null, Validators.required],
+        addressLine1: [null, Validators.required],
+        city: [null, Validators.required],
+        postalCode: [null, Validators.required],
+        country: [null, Validators.required],
+        addressLine2: [null],
+      },
+      {
+        validators: this.passwordsMatch,
+      }
+    );
   }
 
   getValue(event: Event): string {
@@ -79,7 +111,7 @@ export class RegisterComponent {
 
   getYearsOfBirth(): string[] {
     const years: string[] = [];
-    const currentYear = + new Date().toString().slice(-54 ,-50);
+    const currentYear = +new Date().toString().slice(-54, -50);
     const maxYear = currentYear - 18;
     const minYear = maxYear - 90;
 
@@ -90,37 +122,49 @@ export class RegisterComponent {
     return years;
   }
 
- isBissextile(year: string): boolean {
-  if ((+year % 4 === 0 && +year % 100 !== 0) || +year % 400 === 0) {
-    return true;
-  } else {
-    return false;
+  isBissextile(year: string): boolean {
+    if ((+year % 4 === 0 && +year % 100 !== 0) || +year % 400 === 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
-}
 
   getDaysInAMonth(): string[] {
     const days: string[] = [];
-    const months: string[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+    const months: string[] = [
+      'Janvier',
+      'Février',
+      'Mars',
+      'Avril',
+      'Mai',
+      'Juin',
+      'Juillet',
+      'Août',
+      'Septembre',
+      'Octobre',
+      'Novembre',
+      'Décembre',
+    ];
 
-    if(!this.selectedYear)
-      this.selectedYear = "2004";
+    if (!this.selectedYear) this.selectedYear = '2004';
 
     switch (this.selectedMonth) {
       case months[1]:
-          const max = this.isBissextile(this.selectedYear) ? 29 : 28;
-          for (let i = 1; i <= max; i++) {
-            days.push(i.toString());
-          };
+        const max = this.isBissextile(this.selectedYear) ? 29 : 28;
+        for (let i = 1; i <= max; i++) {
+          days.push(i.toString());
+        }
         break;
-      case (months[3] || months[5] || months[8] || months[10]):
-          for (let i = 1; i <= 30; i++) {
-            days.push(i.toString());
-          };
+      case months[3] || months[5] || months[8] || months[10]:
+        for (let i = 1; i <= 30; i++) {
+          days.push(i.toString());
+        }
         break;
       default:
         for (let i = 1; i <= 31; i++) {
           days.push(i.toString());
-        };
+        }
     }
 
     return days;
@@ -135,8 +179,8 @@ export class RegisterComponent {
         matchingPassword.setErrors(null);
         return null;
       } else {
-        matchingPassword.setErrors({passwordsNotMatching: true});
-        return {passwordsNotMatching: true};
+        matchingPassword.setErrors({ passwordsNotMatching: true });
+        return { passwordsNotMatching: true };
       }
     } else {
       return null;
@@ -164,7 +208,9 @@ export class RegisterComponent {
     return false;
   }
 
-  shouldDisplayPasswordsNotMatchingError(control: AbstractControl | null): boolean {
+  shouldDisplayPasswordsNotMatchingError(
+    control: AbstractControl | null
+  ): boolean {
     if (control) {
       return control.hasError('passwordsNotMatching') && control.touched;
     }
@@ -191,22 +237,27 @@ export class RegisterComponent {
     this.registerDto.lastname = this.registerForm.controls['lastname'].value;
     this.registerDto.email = this.registerForm.controls['email'].value;
     this.registerDto.password = this.registerForm.controls['password'].value;
-    this.registerDto.confirmPassword = this.registerForm.controls['confirmPassword'].value;
-    const monthNumber = this.months.indexOf(this.registerForm.controls['monthOfBirth'].value) + 1;
-    this.registerDto.dateOfBirth = new Date(`${this.registerForm.controls['yearOfBirth'].value}-${monthNumber}-${this.registerForm.controls['dayOfBirth'].value}`);
-    this.registerDto.addressLine1 = this.registerForm.controls['addressLine1'].value;
-    this.registerDto.addressLine2 = this.registerForm.controls['addressLine2'].value;
+    this.registerDto.confirmPassword =
+      this.registerForm.controls['confirmPassword'].value;
+    const monthNumber =
+      this.months.indexOf(this.registerForm.controls['monthOfBirth'].value) + 1;
+    this.registerDto.dateOfBirth = new Date(
+      `${this.registerForm.controls['yearOfBirth'].value}-${monthNumber}-${this.registerForm.controls['dayOfBirth'].value}`
+    );
+    this.registerDto.addressLine1 =
+      this.registerForm.controls['addressLine1'].value;
+    this.registerDto.addressLine2 =
+      this.registerForm.controls['addressLine2'].value;
     this.registerDto.city = this.registerForm.controls['city'].value;
-    this.registerDto.postalCode = this.registerForm.controls['postalCode'].value;
+    this.registerDto.postalCode =
+      this.registerForm.controls['postalCode'].value;
     this.registerDto.country = this.registerForm.controls['country'].value;
 
-    this.authService
-    .register(this.registerDto)
-    .subscribe({
+    this.authService.register(this.registerDto).subscribe({
       next: (res) => {
         console.log(res);
         alert('Bienvenue chez Brilatto!');
-        this.router.navigate(['/login'])
+        this.router.navigate(['/login']);
       },
       error: (err) => {
         switch (err.error.message) {
@@ -226,7 +277,7 @@ export class RegisterComponent {
             this.existingUser = true;
             this.isLoading = false;
             break;
-          case '⚠ Passwords don\'t match!':
+          case "⚠ Passwords don't match!":
             this.passwordsNotMatching = true;
             this.isLoading = false;
             break;
@@ -235,7 +286,7 @@ export class RegisterComponent {
             this.isLoading = false;
         }
         console.log(`${err.statusText}: ${err.error.message}`);
-      }
+      },
     });
   }
 }

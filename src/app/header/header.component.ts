@@ -9,8 +9,8 @@ import { Converter } from '../utils/converter.utils';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent  {
-  isLoggedIn: boolean = this.authService.isLoggedIn()
+export class HeaderComponent {
+  isLoggedIn: boolean = this.authService.isLoggedIn();
   cartCounter: number = 0;
 
   constructor(
@@ -18,11 +18,9 @@ export class HeaderComponent  {
     private cartService: CartService,
     private router: Router
   ) {
-    this.cartService.cartSubject.subscribe(
-      data => {
-        this.cartCounter = data;
-      }
-    )
+    this.cartService.cartSubject.subscribe((data) => {
+      this.cartCounter = data;
+    });
   }
 
   ngOnInit(): void {
@@ -35,8 +33,6 @@ export class HeaderComponent  {
     this.isLoggedIn = false;
     this.cartCounter = 0;
     Converter.clearCart();
-    this.router
-      .navigate(['/login'])
-      .then(() => window.location.reload())
-}
+    this.router.navigate(['/login']).then(() => window.location.reload());
+  }
 }

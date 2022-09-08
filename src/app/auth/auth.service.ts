@@ -25,19 +25,16 @@ export class AuthService {
   };
   tokenPayload: any;
 
-  constructor(
-    private http: HttpClient,
-    private jwtHelper: JwtHelperService 
-  ) {
-      this.tokenPayload = this.getTokenDecoded();
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
+    this.tokenPayload = this.getTokenDecoded();
   }
 
   login(loginForm: LoginForm): Observable<any> {
-      return this.http.post<any>(
-        environment.baseUrl + this.LOGIN_URL,
-        loginForm,
-        this.httpOptions
-      );
+    return this.http.post<any>(
+      environment.baseUrl + this.LOGIN_URL,
+      loginForm,
+      this.httpOptions
+    );
   }
 
   register(registerForm: RegisterForm): Observable<any> {
@@ -58,7 +55,7 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
-    return token && token != "undefined" ? true : false;
+    return token && token != 'undefined' ? true : false;
   }
 
   clearToken(): void {
@@ -66,16 +63,16 @@ export class AuthService {
   }
 
   getToken() {
-    return (localStorage.getItem('token'));
- }
+    return localStorage.getItem('token');
+  }
 
- clearUserId(): void {
-  localStorage.removeItem('userId');
-}
+  clearUserId(): void {
+    localStorage.removeItem('userId');
+  }
 
   getTokenDecoded() {
     const token = this.getToken();
-    if (token && token != "undefined") {
+    if (token && token != 'undefined') {
       return this.jwtHelper.decodeToken(token);
     } else {
       return null;

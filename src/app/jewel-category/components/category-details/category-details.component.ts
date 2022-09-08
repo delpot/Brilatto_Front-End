@@ -15,21 +15,21 @@ export class CategoryDetailsComponent {
 
   constructor(
     private categoryService: JewelCategoryService,
-    private router: Router,
-    ) {}
+    private router: Router
+  ) {}
 
   deleteCategory(categoryId: string) {
     this.categoryService.deleteOneCategory(categoryId).subscribe({
       next: (res) => {
-        const newCategoryList = this.categories.filter((category) => category._id !== res._id);
+        const newCategoryList = this.categories.filter(
+          (category) => category._id !== res._id
+        );
         this.categories = newCategoryList;
-        this.router
-        .navigate(['/'])
-        .then(() => window.location.reload());
+        this.router.navigate(['/']).then(() => window.location.reload());
       },
       error: (err) => {
         console.log(`${err.statusText}: ${err.error}`);
-      }
+      },
     });
   }
 }

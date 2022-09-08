@@ -8,10 +8,9 @@ import { JewelService } from '../../jewel.service';
 @Component({
   selector: 'app-jewels-list',
   templateUrl: './jewels-list.component.html',
-  styleUrls: ['./jewels-list.component.css']
+  styleUrls: ['./jewels-list.component.css'],
 })
 export class JewelsListComponent implements OnInit {
-
   modelId: string = '';
   jewels: Jewel[] = [];
   jewelDto: JewelForm;
@@ -34,17 +33,19 @@ export class JewelsListComponent implements OnInit {
       quantityInStock: 0,
       price: 0,
       description: '',
-    }
+    };
     this.jewelForm = this.formBuilder.group({
       modelId: [null, Validators.required],
       name: [null, Validators.required],
-      photo1:  [null, Validators.required],
-      photo2:  [null, Validators.required],
+      photo1: [null, Validators.required],
+      photo2: [null, Validators.required],
       quantityInStock: [null, Validators.required],
       price: [null, Validators.required],
       description: [null, Validators.required],
-      });
-    this.isAdmin = (this.authService.tokenPayload) ? this.authService.tokenPayload.isAdmin : false;
+    });
+    this.isAdmin = this.authService.tokenPayload
+      ? this.authService.tokenPayload.isAdmin
+      : false;
   }
 
   ngOnInit(): void {
@@ -69,7 +70,7 @@ export class JewelsListComponent implements OnInit {
       },
       error: (err) => {
         console.log(`${err.statusText}: ${err.error}`);
-      }
+      },
     });
   }
 
@@ -78,29 +79,27 @@ export class JewelsListComponent implements OnInit {
     this.jewelDto.name = this.jewelForm.controls['name'].value;
     this.jewelDto.photo1 = this.jewelForm.controls['photo1'].value;
     this.jewelDto.photo2 = this.jewelForm.controls['photo2'].value;
-    this.jewelDto.quantityInStock = this.jewelForm.controls['quantityInStock'].value;
+    this.jewelDto.quantityInStock =
+      this.jewelForm.controls['quantityInStock'].value;
     this.jewelDto.price = this.jewelForm.controls['price'].value;
     this.jewelDto.description = this.jewelForm.controls['description'].value;
 
     this.missingFields = false;
 
-    this.jewelService
-    .addOneJewel(this.jewelDto)
-    .subscribe({
+    this.jewelService.addOneJewel(this.jewelDto).subscribe({
       next: (res) => {
         console.log(res);
         alert(`Nouveau bijou ${res.name} ajouté!`);
         this.router
-        .navigate(['/model/'+ this.modelId])
-        .then(() => window.location.reload());
+          .navigate(['/model/' + this.modelId])
+          .then(() => window.location.reload());
       },
       error: (err) => {
         if (err.error.message === '⚠ Missing fields!') {
           this.missingFields = true;
         }
         console.log(`${err.statusText}: ${err.error}`);
-      }
+      },
     });
   }
-
 }

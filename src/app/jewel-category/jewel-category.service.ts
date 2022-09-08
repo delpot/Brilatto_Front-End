@@ -35,13 +35,13 @@ export class JewelCategoryService {
       environment.baseUrl + this.CATEGORIES_URL + 'add',
       categoryDto,
       this.httpOptions
-    )
+    );
   }
 
   deleteOneCategory(categoryId: string): Observable<any> {
     return this.http.put<any>(
       environment.baseUrl + this.CATEGORIES_URL + categoryId + '/softDelete',
       this.httpOptions
-    )
+    );
   }
 }

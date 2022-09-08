@@ -24,7 +24,9 @@ export class JewelModelService {
   constructor(private http: HttpClient) {}
 
   getAllJewelModelsByCategoryId(categoryId: string): Observable<any> {
-    console.log(environment.baseUrl + this.MODELS_URL + 'category/' + categoryId)
+    console.log(
+      environment.baseUrl + this.MODELS_URL + 'category/' + categoryId
+    );
     return this.http.get<any>(
       environment.baseUrl + this.MODELS_URL + 'category/' + categoryId,
       this.httpOptions
@@ -35,7 +37,7 @@ export class JewelModelService {
     return this.http.get<any>(
       environment.baseUrl + this.MODELS_URL + modelId,
       this.httpOptions
-    )
+    );
   }
 
   addOneModel(modelDto: ModelForm) {
@@ -44,13 +46,13 @@ export class JewelModelService {
       environment.baseUrl + this.MODELS_URL + 'add',
       modelDto,
       this.httpOptions
-    )
+    );
   }
 
   deleteOneModel(modelId: string): Observable<any> {
     return this.http.put<any>(
       environment.baseUrl + this.MODELS_URL + modelId + '/softDelete',
       this.httpOptions
-    )
+    );
   }
 }

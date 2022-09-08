@@ -8,10 +8,9 @@ import { JewelModelService } from '../../jewel-model.service';
 @Component({
   selector: 'app-all-models',
   templateUrl: './models-list.component.html',
-  styleUrls: ['./models-list.component.css']
+  styleUrls: ['./models-list.component.css'],
 })
 export class ModelsListComponent implements OnInit {
-
   categoryId: string = '';
   models: JewelModel[] = [];
   modelDto: ModelForm;
@@ -30,15 +29,17 @@ export class ModelsListComponent implements OnInit {
       categoryId: '',
       name: '',
       photo: '',
-      description: ''
-    }
+      description: '',
+    };
     this.modelForm = this.formBuilder.group({
       name: [null, Validators.required],
-      photo:  [null, Validators.required],
+      photo: [null, Validators.required],
       description: [null],
-      });
-    this.isAdmin = (this.authService.tokenPayload) ? this.authService.tokenPayload.isAdmin : false;
-    }
+    });
+    this.isAdmin = this.authService.tokenPayload
+      ? this.authService.tokenPayload.isAdmin
+      : false;
+  }
 
   ngOnInit(): void {
     const categoryId = this.route.snapshot.paramMap.get('categoryId');
@@ -60,7 +61,7 @@ export class ModelsListComponent implements OnInit {
       },
       error: (err) => {
         console.log(`${err.statusText}: ${err.error}`);
-      }
+      },
     });
   }
 
@@ -71,24 +72,21 @@ export class ModelsListComponent implements OnInit {
     this.modelDto.description = this.modelForm.controls['description'].value;
 
     this.missingFields = false;
-    
-    this.modelService
-    .addOneModel(this.modelDto)
-    .subscribe({
+
+    this.modelService.addOneModel(this.modelDto).subscribe({
       next: (res) => {
         console.log(res);
         alert(`Nouveau modèle ${res.name} ajouté!`);
         this.router
-        .navigate(['/'+ this.categoryId])
-        .then(() => window.location.reload());
+          .navigate(['/' + this.categoryId])
+          .then(() => window.location.reload());
       },
       error: (err) => {
         if (err.error.message === '⚠ Missing fields!') {
           this.missingFields = true;
         }
         console.log(`${err.statusText}: ${err.error}`);
-      }
+      },
     });
   }
-
 }

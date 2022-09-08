@@ -2,8 +2,8 @@ export interface RegisterForm {
   firstname: string;
   lastname: string;
   email: string;
-  password: string,
-  confirmPassword: string,
+  password: string;
+  confirmPassword: string;
   dateOfBirth: Date;
   addressLine1: string;
   city: string;
@@ -11,4 +11,3 @@ export interface RegisterForm {
   country: string;
   addressLine2?: string;
 }
-
