@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Jewel, JewelForm } from '../../jewel.interface';
+import { Jewel } from '../../models/jewel.interface';
 import { JewelService } from '../../jewel.service';
+import { AddJewelForm } from '../../models/add-jewel-form.interface';
 
 @Component({
   selector: 'app-jewels-list',
@@ -13,7 +14,7 @@ import { JewelService } from '../../jewel.service';
 export class JewelsListComponent implements OnInit {
   modelId: string = '';
   jewels: Jewel[] = [];
-  jewelDto: JewelForm;
+  jewelDto: AddJewelForm;
   jewelForm: FormGroup;
   isAdmin: boolean = false;
   missingFields: boolean = false;

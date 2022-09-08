@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LoginForm } from '../models/login-form.interface';
-import { AuthService } from '../auth.service';
+import { LoginForm } from '../../models/login-form.interface';
+import { AuthService } from '../../auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 

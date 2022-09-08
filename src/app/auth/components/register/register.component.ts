@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RegisterForm } from '../models/register-form.interface';
+import { RegisterForm } from '../../models/register-form.interface';
 import {
   AbstractControl,
   FormBuilder,
@@ -7,7 +7,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
 
 @Component({

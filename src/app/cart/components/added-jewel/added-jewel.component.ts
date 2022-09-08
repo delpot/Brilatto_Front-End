@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { Jewel } from 'src/app/jewel/jewel.interface';
+import { Jewel } from 'src/app/jewel/models/jewel.interface';
 import { CartService } from '../../cart.service';
-import { KeyValue } from '@angular/common';
 import { Converter } from 'src/app/utils/converter.utils';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { JewelCategory } from 'src/app/jewel-category/jewel-category.interface';
+import { JewelCategory } from 'src/app/jewel-category/models/jewel-category.interface';
 import { JewelCategoryService } from '../../jewel-category.service';
 
 @Component({

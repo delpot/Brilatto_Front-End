@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { JewelForm } from './jewel.interface';
+import { AddJewelForm } from './models/add-jewel-form.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +30,7 @@ export class JewelService {
     );
   }
 
-  addOneJewel(jewelDto: JewelForm) {
+  addOneJewel(jewelDto: AddJewelForm) {
     console.log(jewelDto);
     return this.http.post<any>(
       environment.baseUrl + this.JEWELS_URL + 'add',

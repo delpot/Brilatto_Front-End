@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from './account/account.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/components/login/login.component';
+import { RegisterComponent } from './auth/components/register/register.component';
 import { CartComponent } from './cart/components/cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { ModelsListComponent } from './jewel-model/components/models-list/models-list.component';

@@ -1,4 +1,4 @@
-import { Jewel } from '../jewel/jewel.interface';
+import { Jewel } from '../jewel/models/jewel.interface';
 
 export class Converter {
   static GetJewelFromMap(

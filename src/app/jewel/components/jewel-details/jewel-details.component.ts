@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/cart/cart.service';
 import { Converter } from 'src/app/utils/converter.utils';
-import { Jewel } from '../../jewel.interface';
+import { Jewel } from '../../models/jewel.interface';
 import { JewelService } from '../../jewel.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { JewelService } from '../../jewel.service';
   templateUrl: './jewel-details.component.html',
   styleUrls: ['./jewel-details.component.css'],
 })
-export class JewelDetailsComponent implements OnInit {
+export class JewelDetailsComponent {
   @Input() jewel: Jewel = {} as Jewel;
   @Input() jewels: Jewel[] = [];
   addedJewels: Map<Jewel, number> = new Map<Jewel, number>();
@@ -23,8 +23,6 @@ export class JewelDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
-  ngOnInit(): void {}
 
   addToCart(jewel: Jewel) {
     this.addedJewels = Converter.GetJewelMap();

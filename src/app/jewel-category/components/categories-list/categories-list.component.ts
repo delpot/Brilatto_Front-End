@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
-import {
-  CategoryForm,
-  JewelCategory,
-} from 'src/app/jewel-category/jewel-category.interface';
+import { JewelCategory } from 'src/app/jewel-category/models/jewel-category.interface';
 import { JewelCategoryService } from 'src/app/jewel-category/jewel-category.service';
+import { AddCategoryForm } from '../../models/add-category-form.interface';
 
 @Component({
   selector: 'app-categories-list',
@@ -14,7 +12,7 @@ import { JewelCategoryService } from 'src/app/jewel-category/jewel-category.serv
 })
 export class CategoriesListComponent implements OnInit {
   categories: JewelCategory[] = [];
-  categoryDto: CategoryForm;
+  categoryDto: AddCategoryForm;
   categoryForm: FormGroup;
   isAdmin: boolean = false;
   missingFields: boolean = false;
