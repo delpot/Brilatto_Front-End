@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Converter } from 'src/app/utils/converter.utils';
 import { Jewel } from '../../../jewel/models/jewel.interface';
 import { CartService } from '../../cart.service';
@@ -13,7 +15,11 @@ export class CartComponent implements OnInit {
   cartTotal: number = 0;
   listJewel: Jewel[] = [];
 
-  constructor(private cartService: CartService) {
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.cartService.cartTotalSubject.subscribe((data) => {
       this.cartTotal = data;
     });
@@ -27,5 +33,13 @@ export class CartComponent implements OnInit {
   cartDetails() {
     this.addedJewels = Converter.GetJewelMap();
     this.listJewel = Array.from(this.addedJewels.keys());
+  }
+
+  validCart() {
+    if (this.authService.isLoggedIn()) {
+      return null;
+    } else {
+      return this.router.navigate(['/login']);
+    }
   }
 }
