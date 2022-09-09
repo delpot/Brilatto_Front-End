@@ -55,6 +55,11 @@ export class ModelsListComponent implements OnInit {
     this.modelService.getAllJewelModelsByCategoryId(this.categoryId).subscribe({
       next: (res) => {
         this.models = res;
+
+        if (!this.isAdmin && this.models.length === 0) {
+          this.router.navigate(['not-found']);
+        }
+
         for (const model of this.models) {
           const imagePath = `./assets/photos/models/${model.photo}`;
           model.photo = imagePath;
