@@ -6,8 +6,7 @@
     flex-wrap: wrap;
     font-size: 1.2rem;
     font-weight: 350; 
-    letter-spacing: 0.025em; 
-    text-transform: capitalize; 
+    letter-spacing: 0.025em;  
     border-radius: 0.375rem; 
     border-top-width: 2px; 
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); 
@@ -39,6 +38,7 @@ h3 {
     text-align: center; 
     white-space: nowrap; 
     font-style: oblique;
+    text-transform: capitalize;
 }
 
 .quantity {

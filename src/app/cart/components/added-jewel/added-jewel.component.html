@@ -49,14 +49,14 @@
       </svg>
     </button>
 
-    <p 
-      *ngIf="maxQuantityReached"
-      class="text-red-700 text-xs font-medium mb-2" 
-      >
-      Vous avez atteint la limite.
-    </p>
-
   </div>
+
+  <p 
+    *ngIf="maxQuantityReached"
+    class="text-red-700 text-xs font-medium mb-2" 
+    >
+    Vous avez atteint la limite.
+  </p>
 
   <div class="column">{{ jewel.price * quantity }}€</div>
 
